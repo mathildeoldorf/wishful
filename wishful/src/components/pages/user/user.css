@@ -1,0 +1,68 @@
+/* ########################### PROFILE */
+
+.profileDetails label {
+    font-weight: 800;
+}
+
+.profileDetails {
+    padding-left: 5vw;
+}
+
+.profile .twoColumnContainer {
+    padding: 2vw 5vw 2vw 0;
+}
+
+@media screen and (max-width:800px) {
+    .profile .twoColumnContainer {
+        padding: 4vw 2.5vw 4vw 0;
+    }
+}
+
+.profile .btnContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: center;
+    width: 100%;
+}
+
+.profile.update .btnContainer {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.profile .btnContainer button {
+    margin: 0;
+}
+
+.bannerWelcome {
+    display: grid;
+    align-self: center;
+}
+
+.profile.update {
+    min-height: 40vw;
+}
+
+.profile.button {
+    color: #fff;
+    position: fixed;
+    background-color: teal;
+    margin: 0 0 0 -5vw;
+    padding: 1vw 2vw;
+    top: 15%;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.profile.button h1 {
+    font-size: calc(1.7vw + 20%);
+}
+
+.profile.button .btnToggleShow {
+    padding: 1vw 0;
+    color: #fff;
+    text-align: left;
+}

@@ -1,0 +1,6 @@
+{
+    "APICategories": "https://openapi.etsy.com/v2/listings/active?fields=title,quantity,category_id,url,taxonomy_path&",
+    "APIProducts": " https://openapi.etsy.com/v2/listings/active?",
+    "KeyLink": "0933a188c8173650bd78979a9596eacc",
+    "KeyEtsy": "api_key=gjiz0w75be02n5smg02gxvje"
+}

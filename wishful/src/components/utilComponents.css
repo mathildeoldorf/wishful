@@ -1,0 +1,146 @@
+.promptContainer {
+  display: grid;
+  position: fixed;
+  background-color: #fff;
+  padding: 4vw 0;
+  width: 50vw;
+  height: 35vw;
+  left: 25%;
+  top: 19%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.profile .promptContainer .banner {
+  height: 12vw;
+}
+
+.promptContent {
+  display: grid;
+  color: #fff;
+  padding: 4.5vw;
+}
+
+.promptContent .btnContainer {
+  align-self: center;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.headerPrompt {
+  justify-self: left;
+  font-size: calc(0.6rem + 40%);
+}
+
+.subHeaderPrompt {
+  font-size: calc(1.2rem + 40%);
+}
+
+.message {
+  position: fixed;
+  width: 20vw;
+  background-color: #fff;
+  right: 2%;
+  top: -43%;
+  background-color: teal;
+  display: grid;
+  align-content: center;
+  padding: 2vw;
+  color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  z-index: 2;
+}
+
+.message.appear {
+  animation-name: appear;
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+  transition: ease-in-out;
+}
+
+@keyframes appear {
+  10% {
+    top: 10%;
+  }
+
+  15% {
+    top: 8%;
+  }
+
+  70% {
+    top: 8%;
+  }
+
+  100% {
+    top: -43%;
+  }
+}
+
+.Loader-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  background: #74ebd5;
+  background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);
+  background: linear-gradient(to right, #ACB6E5, #74ebd5);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+#frmSearch {
+  position: absolute;
+}
+
+#search {
+  position: absolute;
+  width: 3vw;
+  height: 3vw;
+  right: 5vw;
+  top: 15%;
+  font-family: FontAwesome;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 2vw;
+  border: none;
+  z-index: 1;
+}
+
+#search.active {
+  width: 15%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    ".SFNSText-Regular", sans-serif;
+  text-align: left;
+  padding: 0 1%;
+}
+
+.searchResults {
+  position: absolute;
+  align-items: top;
+  padding: 3vw 1vw;
+  top: 10vw;
+  z-index: 0;
+  right: 5vw;
+  width: 15%;
+  height: auto;
+  max-height: 70vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #fff;
+  color: rgb(90, 88, 88);
+  z-index: 0;
+  border-radius: 1px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.searchResults a {
+  padding: 1vw;
+  /* margin: auto; */
+}

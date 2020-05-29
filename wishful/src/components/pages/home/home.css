@@ -1,0 +1,12 @@
+.home {
+    align-items: center;
+    /* justify-items: center; */
+}
+
+.homeContent {
+    display: grid;
+}
+
+.btnProfile {
+    width: 30vw;
+}
