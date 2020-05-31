@@ -73,18 +73,21 @@ const Register = (props) => {
   };
 
   return (
-    <section className="signup">
-      <div className="banner">
-        <h2>Let's get started...</h2>
-        <h1 className="headerSection">Sign up</h1>
-        <div></div>
-      </div>
+    <>
       <Message resMessage={message} />
-      <div className="formContainer">
-        <form className="formSignup" onSubmit={handleSubmit}>
-          <div className="container">
-            <div className="grid gridTwoColumns gridGapSmall">
-              <div>
+      <section className="signup">
+        <div className="banner">
+          <h2>Let's get started...</h2>
+          <h1 className="headerSection">Sign up</h1>
+          <div></div>
+        </div>
+        <div>
+          <form
+            className="grid gridGapSmall gridTwoColumns container"
+            onSubmit={handleSubmit}
+          >
+            <div className="container">
+              <div className="container grid">
                 <label htmlFor="firstName">First Name</label>
                 <input
                   id="firstName"
@@ -94,7 +97,7 @@ const Register = (props) => {
                   onChange={(e) => setFirstName(e.target.value)}
                 ></input>
               </div>
-              <div>
+              <div className="container grid">
                 <label htmlFor="password">Password</label>
                 <input
                   id="password"
@@ -104,7 +107,7 @@ const Register = (props) => {
                   onChange={(e) => setPassword(e.target.value)}
                 ></input>
               </div>
-              <div>
+              <div className="container grid">
                 <label htmlFor="lastName">Last Name</label>
                 <input
                   id="lastName"
@@ -114,7 +117,7 @@ const Register = (props) => {
                   onChange={(e) => setLastName(e.target.value)}
                 ></input>
               </div>
-              <div>
+              <div className="container grid">
                 <label htmlFor="Repeat password">Repeat password</label>
                 <input
                   id="repeatPassword"
@@ -124,7 +127,7 @@ const Register = (props) => {
                   onChange={(e) => setRepeatPassword(e.target.value)}
                 ></input>
               </div>
-              <div>
+              <div className="container grid">
                 <label htmlFor="email">Email</label>
                 <input
                   id="email"
@@ -134,17 +137,20 @@ const Register = (props) => {
                   onChange={(e) => setEmail(e.target.value)}
                 ></input>
               </div>
-              <div></div>
             </div>
-          </div>
-          <div className="grid gridTwoColumns gridGapSmall alignItemsBottom">
-            <button className="active" disabled={!validateForm()} type="submit">
-              {loading ? "Loading" : "Sign up"}
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
+            <div className="relative flexEnd container alignItemsBottom">
+              <button
+                className="active"
+                disabled={!validateForm()}
+                type="submit"
+              >
+                {loading ? "Loading" : "Sign up"}
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </>
   );
 };
 

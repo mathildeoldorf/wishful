@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-// TO DO: SEARCH BOX BLUR DISAPPERANCE INTERFERES WITH NAVIGATION TO A NEW PAGE
-// history.push changes the url but doesn't change profile if you are already in that component
-
 const Search = ({ setSearchID }) => {
   const history = useHistory();
   const [active, setActive] = useState(false);
@@ -38,11 +35,13 @@ const Search = ({ setSearchID }) => {
   };
 
   const hideSearchContainer = (e) => {
-    setActive(false);
-    setSearchResults("");
     if (e) {
       e.target.value = "";
     }
+    setTimeout(() => {
+      setSearchResults("");
+      setActive(false);
+    }, 100);
   };
 
   const fetchProfile = (result) => {
@@ -59,7 +58,7 @@ const Search = ({ setSearchID }) => {
           <input
             onInput={handleSearch}
             onFocus={showSearchContainer}
-            // onBlur={hideSearchContainer}
+            onBlur={hideSearchContainer}
             className="active"
             id="search"
             type="text"
@@ -69,7 +68,7 @@ const Search = ({ setSearchID }) => {
           <input
             onInput={handleSearch}
             onFocus={showSearchContainer}
-            // onBlur={hideSearchContainer}
+            onBlur={hideSearchContainer}
             id="search"
             type="text"
             placeholder="&#xF002;"
@@ -79,7 +78,7 @@ const Search = ({ setSearchID }) => {
       {searchResults.length !== 0 && searchResults !== "No result" ? (
         <div
           className="searchResults"
-          style={active ? { display: "grid" } : { display: "none" }}
+          // style={active ? { display: "grid" } : { display: "grid" }}
         >
           {searchResults.map((result, i) => (
             <p
@@ -95,7 +94,7 @@ const Search = ({ setSearchID }) => {
       ) : searchResults === "No result" ? (
         <div
           className="searchResults"
-          style={active ? { display: "grid" } : { display: "none" }}
+          // style={active ? { display: "grid" } : { display: "grid" }}
         >
           <p>{searchResults}</p>
         </div>

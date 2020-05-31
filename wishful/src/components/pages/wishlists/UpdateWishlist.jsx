@@ -4,14 +4,13 @@ import axios from "axios";
 import WishlistItem from "./WishlistItem";
 
 const UpdateWishlist = ({
-  ID,
   setUpdate,
   fetchWishlist,
   showMessage,
   singleWishlist,
 }) => {
   const [loading, setLoading] = useState(false);
-  console.log(singleWishlist);
+  const letter = singleWishlist.name.charAt(0);
 
   const [name, setName] = useState(singleWishlist.name);
   const [description, setDescription] = useState(singleWishlist.description);
@@ -25,11 +24,14 @@ const UpdateWishlist = ({
     setLoading(true);
     event.preventDefault();
     try {
-      let response = await axios.post(`http://localhost:9090/wishlists/${ID}`, {
-        name: name,
-        description: description,
-        isPublic: isPublic,
-      });
+      let response = await axios.post(
+        `http://localhost:9090/wishlists/${singleWishlist.ID}`,
+        {
+          name: name,
+          description: description,
+          isPublic: isPublic,
+        }
+      );
 
       let data = response.data;
       console.log(response);
@@ -47,48 +49,64 @@ const UpdateWishlist = ({
   };
 
   return (
-    <>
+    <section className="updateWishlist relative">
+      <button
+        className="secondary absolute textLeft left"
+        onClick={() => setUpdate(false)}
+      >
+        Back
+      </button>
+      <div className="coverletter">{letter}</div>
       <div className="banner">
-        <p>Here we go...</p>
-        <h1 className="headerSection">
-          Let's update your wishlist {singleWishlist.name}!
-        </h1>
+        <h2>Here we go...</h2>
+        <h1>Let's update your wishlist</h1>
+        <h3>{singleWishlist.name}</h3>
       </div>
-      <form onSubmit={handleUpdateWishlist}>
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          placeholder="Name"
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-        ></input>
-        <label htmlFor="description">Description</label>
-        <input
-          id="description"
-          placeholder="Description"
-          type="text"
-          onChange={(e) => setDescription(e.target.value)}
-          value={description}
-        ></input>
-        <div className="box">
-          <label className="label" htmlFor="public">
-            Public
-          </label>
-          <label className="switch">
+      <form
+        className="grid gridGapSmall gridTwoColumns container"
+        onSubmit={handleUpdateWishlist}
+      >
+        <div className="container">
+          <div className="container grid">
+            <label htmlFor="name">Name</label>
             <input
-              id="public"
-              type="checkbox"
-              onChange={(e) => (e.target.checked ? setPublic(1) : setPublic(0))}
-              checked={isPublic ? true : false}
-            />
-            <span className="slider round"></span>
-          </label>
+              id="name"
+              placeholder="Name"
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            ></input>
+          </div>
+          <div className="container grid">
+            <label htmlFor="description">Description</label>
+            <input
+              id="description"
+              placeholder="Description"
+              type="text"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+            ></input>
+          </div>
+          <div className="container grid">
+            <label className="label" htmlFor="public">
+              Public
+            </label>
+            <div className="box">
+              <label className="switch">
+                <input
+                  id="public"
+                  type="checkbox"
+                  onChange={(e) =>
+                    e.target.checked ? setPublic(1) : setPublic(0)
+                  }
+                  checked={isPublic ? true : false}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
+          </div>
         </div>
-        <div className="btnContainer">
-          <button className="btnBack" onClick={() => setUpdate(false)}>
-            Back
-          </button>
+        <div className="relative flexEnd container alignItemsBottom">
           <button
             className={validateForm() ? "active" : ""}
             disabled={!validateForm()}
@@ -98,7 +116,7 @@ const UpdateWishlist = ({
           </button>
         </div>
       </form>
-    </>
+    </section>
   );
 };
 export default UpdateWishlist;

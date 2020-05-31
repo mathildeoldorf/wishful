@@ -8,6 +8,10 @@
 
 /* ########################### BASIC HTML ELEMENTS */
 
+#root {
+  /* overflow: hidden; */
+}
+
 .App {
   display: grid;
   width: 100%;
@@ -28,11 +32,12 @@ main.public {
 
 section {
   width: 100%;
-  /* min-height: 35vw; */
-  display: grid;
+  min-height: 50%;
+  /* display: grid; */
   align-self: center;
   justify-self: center;
-  padding: 0 10%;
+  padding: 10%;
+  overflow: hidden;
 }
 
 /* ########################### FOOTER */
@@ -70,6 +75,7 @@ nav {
 header {
   font-weight: 900;
   cursor: pointer;
+  align-content: center;
 }
 
 nav ul {
@@ -81,7 +87,6 @@ nav ul {
 nav ul li,
 header {
   display: grid;
-  align-content: center;
   height: 100%;
   text-align: center;
 }
@@ -90,6 +95,7 @@ nav ul li a {
   display: grid;
   height: 4vw;
   align-content: center;
+  transition: 0.2s ease-in-out;
 }
 
 @media screen and (max-width: 800px) {
@@ -110,17 +116,34 @@ a.active {
   background-color: #acb6e5;
 }
 
+nav a:hover {
+  color: #fff;
+  background-color: #acb6e5;
+}
+
+nav header a:hover {
+  color: #494949;
+  background-color: transparent;
+}
+
 /* ########################### BUTTONS */
 
-button {
-  width: 100%;
-  margin: 0.5vw 0;
+button,
+a.secondary {
+  min-width: 20vw;
+  max-width: 20vw;
   padding: 1vw 0;
   border: 1px solid lightgrey;
   outline: none;
   cursor: pointer;
   border-radius: 0.4vw;
   background-color: #f9f9f9;
+  transition: 0.7s ease-in-out;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: lightgrey;
 }
 
 button:disabled {
@@ -129,8 +152,14 @@ button:disabled {
 
 button.active {
   background-color: #acb6e5;
+  background-color: rgb(109, 122, 192);
   color: #fff;
   border-color: #acb6e5;
+}
+
+button.active:hover {
+  background-color: #fff;
+  color: #acb6e5;
 }
 
 button:disabled.active {
@@ -145,20 +174,37 @@ button:disabled.active {
   }
 }
 
-button.secondary {
+button.secondary,
+a.secondary {
   border: none;
   margin: 0;
-  padding: 1vw 0 2vw 0;
+  /* padding: 1vw 0; */
   background-color: transparent;
-}
-
-button.delete {
+  width: 100%;
   border: none;
-  padding: 0;
+  min-width: auto;
+  max-width: auto;
+  /* padding: 0; */
+  /* text-align: right; */
 }
 
-.formContainer button {
-  margin: 0 0 1vw 0;
+button.secondary.absolute {
+  top: 0;
+}
+
+button.secondary.absolute.right {
+  right: 0;
+  text-align: right;
+}
+
+button.secondary.absolute.left {
+  left: 10%;
+}
+
+button.secondary:hover,
+a.secondary:hover {
+  transform: scale(1);
+  color: #acb6e5;
 }
 
 ul {
@@ -174,8 +220,12 @@ ul {
 }
 
 .bgCover {
-  background-size: cover;
+  background-size: 110%;
   background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  /* background-origin: content-box; */
+  background-position: center;
+  /* background-position-y: top; */
 }
 
 .bgContain {
@@ -202,7 +252,34 @@ ul {
   background-color: #acb6e5;
 }
 
+.colorWhite {
+  color: #fff;
+}
+
+/* ########################## POSITIONS */
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
 /* ########################## GRIDS */
+
+.flexEnd {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+
+.flexStart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
 .grid {
   display: grid;
@@ -218,6 +295,14 @@ ul {
   }
 }
 
+.gridTwoThirds {
+  grid-template-columns: 2fr 1fr;
+}
+
+.gridTwoThirdsAlmost {
+  grid-template-columns: 1.5fr 1fr;
+}
+
 .gridThreeColumns {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -230,6 +315,10 @@ ul {
   grid-gap: 2%;
 }
 
+.gridGapMedium {
+  grid-gap: 10%;
+}
+
 .gridOneThird {
   grid-template-columns: 1fr 2fr;
 }
@@ -238,38 +327,96 @@ ul {
   grid-template-columns: 1fr 4fr;
 }
 
+/* ########################### PADDING AND MARGIN */
+.paddingSmall {
+  padding: 1vw;
+}
+
+.paddingVerticalSmall {
+  padding: 1vw 0;
+}
+
+.marginTopSmall {
+  margin-top: 5%;
+}
+
+.marginTopMedium {
+  margin-top: 10%;
+}
+
+/* ########################### TEXT ALIGNMENT */
+.textRight {
+  text-align: right;
+}
+
+.textLeft {
+  text-align: left;
+}
+
 /* ########################### ALIGNMENT */
 .alignItemsBottom {
   align-items: flex-end;
+}
+
+.alignItemsTop {
+  align-items: flex-start;
+}
+
+.alignItemsCenter {
+  align-items: center;
 }
 
 .alignSelfTop {
   align-self: flex-start;
 }
 
+.alignSelfBottom {
+  align-self: flex-end;
+}
+
+.alignSelfCenter {
+  align-self: center;
+}
+
+.justifyContentCenter {
+  justify-content: center;
+}
+
+.justifyContentLeft {
+  justify-content: left;
+}
+
+.marginAuto {
+  margin: 0 auto;
+}
+
 /* ########################### CONTAINERS */
 .container {
-  padding: 4% 0;
+  padding: 4% 0 0 0;
 }
 
 /* ########################### FORMS */
 
 form {
   padding: 1% 0;
+  min-height: 100%;
 }
 
 input {
   width: 100%;
-  margin: 0.5vw 0 1vw 0;
-  padding: 0.8vw 0;
+  /* margin: 0.5vw 0 1vw 0; */
+  padding: 0 0 0.8vw 0;
   outline: none;
   border: none;
   border-bottom: 1px solid #494949;
   text-transform: uppercase;
+  background-color: transparent;
 }
 
 label {
   text-transform: uppercase;
+  font-weight: 800;
+  padding: 0.8vw 0;
 }
 
 @media screen and (max-width: 800px) {
@@ -279,14 +426,10 @@ label {
   }
 }
 
-/* .signup .inputContainer {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 0 2%;
-} */
+/* 
 
 .public .formContainer {
-  /* background-color: #fff;
+  background-color: #fff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -295,21 +438,21 @@ label {
   display: grid;
   align-self: center;
   justify-self: center;
-  padding-top: 8%; */
+  padding-top: 8%;
 }
 
 section.public {
-  /* align-items: center;
+  align-items: center;
   position: relative;
   width: 100%;
   height: 100%;
   padding: 0;
   overflow: hidden;
-  background-color: transparent; */
+  background-color: transparent;
 }
 
 .public .containerContent {
-  /* padding: 0;
+  padding: 0;
   display: grid;
   width: 100%;
   height: 100%;
@@ -317,36 +460,17 @@ section.public {
   color: #fff;
   display: grid;
   align-content: center;
-  padding: 0 10%; */
+  padding: 0 10%;
 }
 
 .public .banner {
-  /* z-index: 1;
-  background-color: transparent; */
+  z-index: 1;
+  background-color: transparent;
 }
 
 .public .formContainer .banner {
-  /* background-color: teal; */
-}
-
-.coverletter {
-  line-height: 1.2;
-  color: rgb(1, 112, 112);
-  color: rgba(0, 0, 0, .1);
-  color: rgba(255, 255, 255, .1);
-  z-index: 1;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  -moz-user-select: none;
-  user-select: none;
-  padding-top: 100px;
-  font-size: 70.0rem;
-  z-index: 0;
-}
+  background-color: teal;
+} */
 
 /* ########################### CONTAINERS */
 
@@ -378,10 +502,11 @@ h2 {
 h3 {
   font-size: calc(0.5rem + 40%);
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 p {
-  font-size: calc(0.4em + 50%);
+  font-size: calc(0.4rem + 50%);
   font-size: 400;
 }
 
@@ -397,8 +522,10 @@ p {
 button,
 label,
 input,
-nav {
-  font-size: calc(0.5em + 30%);
+nav,
+p,
+a.secondary {
+  font-size: calc(0.5rem + 30%);
 }
 
 @media screen and (max-width: 800px) {
@@ -415,8 +542,16 @@ nav {
   label,
   input,
   nav {
-    font-size: calc(0.3em + 10%);
+    font-size: calc(0.3rem + 10%);
   }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 /* ########################### BANNER */

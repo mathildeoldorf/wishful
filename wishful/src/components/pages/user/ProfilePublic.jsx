@@ -13,6 +13,7 @@ const ProfilePublic = (props) => {
   const ID = props.searchID ? props.searchID : props.match.params.ID;
 
   const [user, setUser] = useState([]);
+  console.log(user);
   const [loading, setLoading] = useState(true);
   const { message, showMessage } = useMessageHandler(null);
 
@@ -39,16 +40,16 @@ const ProfilePublic = (props) => {
   return (
     <>
       {loading ? <Loader /> : null}
-      <div className="profile button">
+      <div className="profile thumbnail bgPurple">
         <Message resMessage={message} />
-        <div className="grid sepContainer">
-          <p> Profile</p>
-          <h1 className="headerSection">
-            {user.firstName} {user.lastName}
-          </h1>
-        </div>
+        {/* <div className="grid sepContainer"> */}
+        <p className="colorWhite"> Profile</p>
+        <h1 className="colorWhite">
+          {user.firstName} {user.lastName}
+        </h1>
+        {/* </div> */}
       </div>
-      <Wishlists userID={ID} context="public" />
+      <Wishlists user={user} userID={ID} context="public" />
     </>
   );
 };

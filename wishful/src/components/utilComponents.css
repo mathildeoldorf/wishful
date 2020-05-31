@@ -1,8 +1,18 @@
-.promptContainer {
+.bgPrompt {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.486);
+}
+
+.prompt {
   display: grid;
   position: fixed;
   background-color: #fff;
-  padding: 4vw 0;
+  padding: 10vw;
   width: 50vw;
   height: 35vw;
   left: 25%;
@@ -11,48 +21,32 @@
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
     0 3px 6px rgba(0, 0, 0, 0.23);
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  z-index: 1;
 }
 
-.profile .promptContainer .banner {
-  height: 12vw;
-}
-
-.promptContent {
-  display: grid;
-  color: #fff;
-  padding: 4.5vw;
-}
-
-.promptContent .btnContainer {
-  align-self: center;
-  grid-template-columns: repeat(2, 1fr);
+.prompt button {
+  min-width: auto;
 }
 
 .headerPrompt {
   justify-self: left;
-  font-size: calc(0.6rem + 40%);
-}
-
-.subHeaderPrompt {
   font-size: calc(1.2rem + 40%);
 }
 
 .message {
   position: fixed;
   width: 20vw;
-  background-color: #fff;
   right: 2%;
   top: -43%;
-  background-color: teal;
+  background-color: #acb6e5;
   display: grid;
   align-content: center;
-  padding: 2vw;
-  color: #fff;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
-    0 3px 6px rgba(0, 0, 0, 0.23);
-  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 2vw 3vw;
   z-index: 2;
+}
+
+.message p {
+  color: #fff;
 }
 
 .message.appear {
@@ -84,9 +78,7 @@
   width: 100%;
   min-height: 100vh;
   position: absolute;
-  background: #74ebd5;
-  background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);
-  background: linear-gradient(to right, #ACB6E5, #74ebd5);
+  background-color: #daedef;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -97,38 +89,46 @@
 
 #frmSearch {
   position: absolute;
+  right: 2%;
+  top: 7%;
 }
 
 #search {
   position: absolute;
+  right: 10%;
   width: 3vw;
   height: 3vw;
-  right: 5vw;
-  top: 15%;
   font-family: FontAwesome;
   background-color: #fff;
   text-align: center;
   border-radius: 2vw;
   border: none;
   z-index: 1;
+  padding: 0;
+  transition: 1s ease-in-out;
+  border: 1px solid lightgrey;
+}
+
+#search::placeholder {
+  color: #494949;
 }
 
 #search.active {
-  width: 15%;
+  width: 20vw;
   font-family: system-ui, -apple-system, BlinkMacSystemFont,
     ".SFNSText-Regular", sans-serif;
   text-align: left;
-  padding: 0 1%;
+  padding: 0 2vw;
 }
 
 .searchResults {
   position: absolute;
   align-items: top;
   padding: 3vw 1vw;
-  top: 10vw;
-  z-index: 0;
+  top: 5vw;
+  /* z-index: 0; */
   right: 5vw;
-  width: 15%;
+  width: 20vw;
   height: auto;
   max-height: 70vh;
   overflow-y: scroll;

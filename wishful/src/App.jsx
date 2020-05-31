@@ -94,9 +94,9 @@ const App = (props) => {
             </header>
             {auth ? (
               <React.Fragment>
-                <li activeClassName="active">
+                <li>
                   <NavLink
-                    // activeClassName="active"
+                    activeClassName="active"
                     to={`${process.env.PUBLIC_URL}/`}
                     exact
                   >

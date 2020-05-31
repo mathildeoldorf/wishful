@@ -65,7 +65,16 @@ const Profile = (props) => {
     return true;
   };
 
-  const deleteProfile = async () => {
+  const handleDelete = (e) => {
+    e.preventDefault();
+    console.log("deleting");
+    showPromptMessage(
+      "Wait...",
+      "Are you sure you want to delete your profile?"
+    );
+  };
+
+  const confirmDelete = async () => {
     setLoading(true);
     try {
       let response = await axios.get("http://localhost:9090/user/delete");
@@ -123,7 +132,7 @@ const Profile = (props) => {
           resPromptMessage={promptMessage}
           resPromptHeader={promptHeader}
           cancelAction={closePromptMessage}
-          confirmAction={deleteProfile}
+          confirmAction={confirmDelete}
           loading={loading}
         />
       ) : null}
@@ -131,98 +140,112 @@ const Profile = (props) => {
         <section className="profile">
           {/* {loading ? <Loader /> : null} */}
           <div className="banner">
-            <h1 className="headerSection">Welcome to Wishful</h1>
-            <p> {user.firstName}</p>
+            <h2>Welcome to Wishful</h2>
+            <h1> {user.firstName}</h1>
           </div>
-          <div className="grid twoColumnContainer">
-            <div className="grid sepContainer profileDetails">
-              <h2>Your information</h2>
-              <div className="grid sepContainer">
+          <div className="grid gridGapSmall gridTwoColumns container">
+            <div>
+              <div className="grid">
                 <label htmlFor="firstName">First name</label>
                 <p className="name">{firstName ? firstName : user.firstName}</p>
               </div>
-              <div className="grid sepContainer">
+              <div className="grid">
                 <label htmlFor="lastName">Last name</label>
                 <p className="name">{lastName ? lastName : user.lastName}</p>
               </div>
-              <div className="grid sepContainer">
+              <div className="grid">
                 <label htmlFor="email">Email</label>
                 <p className="name">{email ? email : user.email}</p>
               </div>
             </div>
-            <div className="btnContainer">
-              <h2>Menu</h2>
+            {/* <div className="btnContainer"> */}
+            {/* <button
+              onClick={() => history.push("/wishlists")}
+              className="active"
+            >
+              Your wishlists
+            </button> */}
+            <div className="relative flexEnd alignItemsBottom">
               <button
-                onClick={() => history.push("/wishlists")}
-                className="active"
+                className="active grid alignSelfBottom"
+                onClick={updateProfile}
               >
-                Your wishlists
-              </button>
-              <button onClick={updateProfile} className="updateProfile">
                 Update profile
               </button>
-              <button
-                // HANDLE PROMPT
-                onClick={() =>
-                  showPromptMessage(
-                    "Wait...",
-                    "Are you sure you want to delete your profile?"
-                  )
-                }
-                className="deleteProfile"
-              >
-                Delete profile
-              </button>
             </div>
+            {/* </div> */}
           </div>
         </section>
       ) : (
         <section className="profile update">
           <div className="banner">
+            <h2>Whatever you want to change...</h2>
             <h1>Let's update your information</h1>
-            <p>What do you wanna change?</p>
           </div>
-          <div className="formContainer">
-            <form onSubmit={confirmUpdate}>
-              <label htmlFor="firstName">First name</label>
-              <input
-                className="firstName"
-                id="firstName"
-                placeholder="First name"
-                value={firstName}
-                type="text"
-                onChange={(e) => setFirstName(e.target.value)}
-              ></input>
-              <label htmlFor="lastName">Last name</label>
-              <input
-                className="lastName"
-                id="lastName"
-                placeholder="Last name"
-                value={lastName}
-                type="text"
-                onChange={(e) => setLastName(e.target.value)}
-              ></input>
-              <label htmlFor="email">Email</label>
-              <input
-                className="email"
-                id="email"
-                placeholder="E-mail"
-                value={email}
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-              ></input>
-              <div className="btnContainer grid twoColumnGrid">
-                <button onClick={() => setUpdate(false)}>Cancel</button>
-                <button
-                  className={validateForm() ? "active" : ""}
-                  disabled={!validateForm()}
-                  type="submit"
-                >
-                  {loading ? "Loading..." : "Save"}
-                </button>
+          <form
+            className="grid gridGapSmall gridTwoColumns container"
+            onSubmit={confirmUpdate}
+          >
+            <div className="">
+              <div className="container grid">
+                <label htmlFor="firstName">First name</label>
+                <input
+                  className="firstName"
+                  id="firstName"
+                  placeholder="First name"
+                  value={firstName}
+                  type="text"
+                  onChange={(e) => setFirstName(e.target.value)}
+                ></input>
               </div>
-            </form>
-          </div>
+              <div className="container grid">
+                <label htmlFor="lastName">Last name</label>
+                <input
+                  className="lastName"
+                  id="lastName"
+                  placeholder="Last name"
+                  value={lastName}
+                  type="text"
+                  onChange={(e) => setLastName(e.target.value)}
+                ></input>
+              </div>
+              <div className="container grid">
+                <label htmlFor="email">Email</label>
+                <input
+                  className="email"
+                  id="email"
+                  placeholder="E-mail"
+                  value={email}
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                ></input>
+              </div>
+            </div>
+            <div className="relative flexEnd alignItemsBottom">
+              <button
+                className={validateForm() ? "active" : ""}
+                disabled={!validateForm()}
+                type="submit"
+              >
+                {loading ? "Loading..." : "Save"}
+              </button>
+              <button
+                type="button"
+                className="marginTopSmall"
+                onClick={() => setUpdate(false)}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="btnDelete secondary absolute right"
+                // HANDLE PROMPT
+                onClick={handleDelete}
+              >
+                Delete profile
+              </button>
+            </div>
+          </form>
         </section>
       )}
     </>

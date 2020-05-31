@@ -1,132 +1,72 @@
-.wishlistContainer .formHeader {
-    align-self: flex-end;
-    color: #fff;
-}
-
-.wishlists {
-    display: grid;
-    width: 50vw;
-    background-color: transparent;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-}
-
-.wishlistContainer {
-    display: grid;
-    grid-gap: 1vw;
-    grid-row: 2 / 4;
-}
-
-.wishlists .headerForm {
-    color: #fff;
-    align-self: top;
-    grid-row: 1/1;
-}
-
-.btnCreateWishList {
-    width: 100%;
-}
-
-.createWishlist {
-    width: 50vw;
-    height: 37vw;
-}
-
-.createWishlist .btnContainer {
-    width: 100%;
-}
-
-.btnSingleWishlist h2,
-.btnSingleWishlist p,
-.wishlistItem h3,
-.wishlistItem p,
-.singleWishlist h1,
-.singleWishlist p {
-    padding: 0.5vw;
-}
-
-/* .wishlistItem p {
-    text-align: center;
-} */
-
 .btnSingleWishlist {
-    margin: 0;
-}
-
-.btnSingleWishlist,
-.btnCreateWishList {
-    transition: 0.5s ease-in-out;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background-color: transparent;
+    overflow: hidden;
+    height: 20vw;
+    min-width: auto;
+    max-width: 100%;
     border: none;
+    text-transform: uppercase;
+    border-radius: 0;
 }
 
 .btnSingleWishlist:hover {
-    background-color: teal;
+    background-color: #daedef;
+}
+
+.btnSingleWishlist span>p {
+    padding-top: 4%;
+}
+
+.btnSingleWishlist:hover span {
+    display: none
+}
+
+.btnSingleWishlist:hover:before {
     color: #fff;
+    font-size: calc(0.8rem + 40%);
+    font-weight: 400;
+    content: "Show wishlist";
 }
 
-.singleWishlist {
-    background-color: #fff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    padding: 3vw 0;
-    align-self: center;
-    justify-self: center;
-    width: 50vw;
-    /* max-height: 50vw; */
+.coverletter {
+    color: #f9f9f9;
+    font-weight: 900;
+    position: absolute;
+    z-index: -1;
+    font-size: 40rem;
 }
 
-.singleWishlist .twoColumnContainer {
-    align-self: flex-end;
-    /* padding: 0 5vw; */
+.btnSingleWishlist .coverletter {
+    top: -20%;
+    left: -20%;
+    font-size: calc(28rem + 40%);
 }
 
-.wishlistItems {
-    align-self: center;
-    padding: 1vw 6vw;
+.updateWishlist .coverletter {
+    top: -20%;
+    left: 0;
+    font-size: calc(68rem + 40%);
 }
 
-.wishlistItem {
-    margin: 1vw 5vw;
-    width: 100%;
-    height: 25vw;
+/* ######### SINGLE WISHLISTS */
+.singleWishlist .coverletter {
+    top: -20%;
+    left: -10%;
+    font-size: calc(62rem + 40%);
 }
 
-.wishlistItem {
-    display: grid;
-    grid-template-columns: 1.6fr 0.7fr 0.5fr 0.2fr;
-    grid-gap: 1vw;
-    border: 0.1px solid lightgray;
-    padding: 0.6vw 1vw;
-    margin: 1vw 0;
-    align-items: baseline;
-    min-height: 4vw;
+/* ############ WISHLISTITEMS */
+
+.wishlistItem .img {
+    height: 30vh;
 }
 
-.wishlistItem>h3,
-.wishlistItem>p,
-.wishlistItem a p,
-.wishlistItem a,
-.wishlistItem button {
-    display: grid;
-    align-self: center;
+.singleWishlist .banner .btnContainer {
+    padding-top: 1vw;
+    width: 70%;
 }
 
-.categoriesContainer {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 2vw;
-    width: 70vw;
-    height: auto;
-    justify-self: center;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    background-color: transparent;
-}
+/* ##################### CREATE WISHLIST */
 
 .switch {
     position: relative;
@@ -143,31 +83,31 @@
 .slider {
     position: absolute;
     cursor: pointer;
-    top: 0;
+    top: 5px;
     left: 0;
-    right: 0;
-    bottom: 0;
+    right: 10px;
+    bottom: -5px;
     background-color: transparent;
-    border: 1px solid lightgray;
+    border: 1px solid #494949;
     -webkit-transition: .4s;
     transition: .4s;
+    background-color: #fff;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 1px;
-    background-color: lightgray;
+    height: 17px;
+    width: 17px;
+    left: 0px;
+    background-color: #494949;
     -webkit-transition: .4s;
     transition: .4s;
     top: 1px;
 }
 
 input:checked+.slider {
-    background-color: transparent;
+    background-color: #fff;
     border: 1px solid rgb(109, 122, 192);
 }
 
@@ -176,7 +116,7 @@ input:focus+.slider {
 }
 
 input:checked+.slider:before {
-    transform: translateX(39px);
+    transform: translateX(31px);
     background-color: rgb(109, 122, 192);
 }
 

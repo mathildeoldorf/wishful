@@ -8,17 +8,19 @@ const Prompt = ({
   loading,
 }) => {
   return (
-    <div className="promptContainer">
-      <div className="banner">
-        <p className="headerPrompt">{resPromptHeader}</p>
-        <h2 className="subHeaderPrompt">{resPromptMessage}</h2>
-      </div>
-      <div className="promptContent">
-        <div className="btnContainer">
+    <div className="bgPrompt">
+      <div className="prompt alignItemsCenter">
+        <div className="banner">
+          <h2>{resPromptHeader}</h2>
+          <h1>{resPromptMessage}</h1>
+        </div>
+        <div className="grid gridTwoColumns alignItemsBottom gridGapSmall">
           <button className="active" onClick={confirmAction}>
             {loading ? "Loading..." : "Confirm"}
           </button>
-          <button onClick={cancelAction}>Cancel</button>
+          <button className="marginTopSmall" onClick={cancelAction}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>

@@ -71,44 +71,54 @@ const Login = (props) => {
   };
 
   return (
-    <section className="login">
-      <div className="banner">
-        <h2>Here we go...</h2>
-        <h1 className="headerSection">Let's login!</h1>
-      </div>
+    <>
       <Message resMessage={message} />
-      <form onSubmit={handleAuth}>
-        <div className="container grid gridTwoColumns gridGapSmall">
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              placeholder="E-mail"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></input>
-            <label htmlFor="password">Password</label>
-
-            <input
-              id="password"
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
+      <section className="login">
+        <div className="banner">
+          <h2>Here we go...</h2>
+          <h1>Let's login!</h1>
+        </div>
+        <form
+          className="grid gridGapSmall gridTwoColumns container"
+          onSubmit={handleAuth}
+        >
+          <div className="container">
+            <div className="container grid">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                placeholder="E-mail"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+            </div>
+            <div className="container grid">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                placeholder="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </div>
           </div>
-        </div>
-        <div className="grid gridTwoColumns gridGapSmall alignItemsBottom">
-          <button className="active" disabled={!validateForm()} type="submit">
-            {loading ? "Loading..." : "Login"}
-          </button>
-          <button onClick={handleForgottenPassword} type="button">
-            Forgotten your password ?
-          </button>
-        </div>
-      </form>
-    </section>
+          <div className="relative flexEnd container alignItemsBottom">
+            <button className="active" disabled={!validateForm()} type="submit">
+              {loading ? "Loading..." : "Login"}
+            </button>
+            <button
+              className="marginTopSmall"
+              onClick={handleForgottenPassword}
+              type="button"
+            >
+              Forgotten your password ?
+            </button>
+          </div>
+        </form>
+      </section>
+    </>
   );
 };
 

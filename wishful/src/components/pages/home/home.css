@@ -3,8 +3,8 @@
     /* justify-items: center; */
 }
 
-.homeContent {
-    display: grid;
+.home .grid {
+    width: 40vw;
 }
 
 .btnProfile {

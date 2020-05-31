@@ -8,6 +8,7 @@ import CreateWishList from "./CreateWishlist.jsx";
 import useMessageHandler from "../../hooks/MessageHandler.jsx";
 import Message from "./../../Message.jsx";
 import Loader from "../../Loader";
+import WishlistButton from "./WishlistButton";
 
 const Wishlists = (props) => {
   const history = useHistory();
@@ -15,6 +16,7 @@ const Wishlists = (props) => {
   const { message, showMessage } = useMessageHandler(null);
   const [loading, setLoading] = useState(false);
 
+  const [user, setUser] = useState(props.user);
   const [userID, setUserID] = useState(props.userID);
   const [update, setUpdate] = useState(false);
   const [context, setContext] = useState(props.context);
@@ -58,12 +60,7 @@ const Wishlists = (props) => {
     }
   };
 
-  const fetchSingleWishlist = (event) => {
-    event.preventDefault();
-    const data = {
-      ID: event.target.id,
-      name: event.target.name,
-    };
+  const fetchSingleWishlist = (data) => {
     setSingleWishlist(data);
   };
 
@@ -71,52 +68,72 @@ const Wishlists = (props) => {
     <>
       {loading ? <Loader /> : null}
       <Message resMessage={message} />
-      {context === "public" ? (
+      {!update ? (
         <>
           {singleWishlist.length === 0 ? (
-            <section className="wishlists">
-              {/* <Message resMessage={message} /> */}
-              <h1 className="headerForm">Wishlists</h1>
-              {!wishlistsBank.length ? (
-                <div
-                  className="placeholderContainer"
-                  style={
-                    !wishlistsBank.length
-                      ? { color: "#fff", backgroundColor: "teal" }
-                      : { color: "#44c4aa", backgroundColor: "#fff" }
-                  }
-                >
-                  <div className="placeHolderMessage">
-                    <p>No wishes yet...</p>
-                    <h2>Start making them come true today</h2>
-                  </div>
-                </div>
-              ) : null}
-
-              <div
-                style={
-                  wishlistsBank.length > 2
-                    ? { gridTemplateColumns: "repeat(3, 1fr)" }
-                    : wishlistsBank.length === 2
-                    ? { gridTemplateColumns: "repeat(2, 1fr)" }
-                    : { gridTemplateColumns: "1fr" }
-                }
-                className="wishlistContainer"
+            <section
+              className={
+                !context
+                  ? "wishlists relative"
+                  : "wishlists relative marginTopMedium"
+              }
+            >
+              <button
+                className="secondary absolute textLeft left"
+                type="button"
+                onClick={() => history.goBack()}
               >
-                {wishlistsBank.map((wishlist, i) => (
-                  <button
-                    className="btnSingleWishlist"
-                    description={wishlist.description}
-                    name={wishlist.name}
-                    id={wishlist.ID}
-                    onClick={fetchSingleWishlist}
-                    key={i}
-                  >
-                    <h2 id={wishlist.ID}>{wishlist.name}</h2>
-                    <p id={wishlist.ID}>{wishlist.description}</p>
-                  </button>
-                ))}
+                Back
+              </button>
+              <div
+                className={
+                  !context
+                    ? "banner relative grid gridTwoThirds"
+                    : "banner relative"
+                }
+              >
+                <div>
+                  <h2>Overview</h2>
+                  <h1>Wishlists</h1>
+                </div>
+                {!context && wishlistsBank.length ? (
+                  <div className="relative flexEnd alignItemsBottom">
+                    <button
+                      className="btnCreateWishList active"
+                      onClick={() => setUpdate(true)}
+                    >
+                      Create wishlist
+                    </button>
+                  </div>
+                ) : null}
               </div>
+              {!wishlistsBank.length ? (
+                <div className="banner">
+                  {!context ? (
+                    <div className="container grid justifyContentCenter">
+                      <button
+                        className="btnCreateWishList active marginTopSmall"
+                        onClick={() => setUpdate(true)}
+                      >
+                        Create wishlist
+                      </button>
+                    </div>
+                  ) : (
+                    <h2>No wishlists yet...</h2>
+                  )}
+                </div>
+              ) : (
+                <div className="wishlistContainer grid gridFourColumns container gridGapSmall">
+                  {wishlistsBank.map((wishlist, i) => (
+                    <WishlistButton
+                      i={i}
+                      key={i}
+                      wishlist={wishlist}
+                      fetchSingleWishlist={(data) => fetchSingleWishlist(data)}
+                    />
+                  ))}
+                </div>
+              )}
             </section>
           ) : (
             <SingleWishlist
@@ -126,83 +143,16 @@ const Wishlists = (props) => {
               fetchWishlists={() => fetchWishlists()}
               wishlist={singleWishlist}
               ID={singleWishlist.ID}
-            />
-          )}
-        </>
-      ) : !context && !update ? (
-        <>
-          {singleWishlist.length === 0 ? (
-            <section className="wishlists">
-              {<h1 className="headerForm">Your wishlists</h1>}
-              {/* <Message resMessage={message} /> */}
-              {!wishlistsBank.length ? (
-                <div
-                  className="placeholderContainer"
-                  style={
-                    !wishlistsBank.length
-                      ? { color: "#fff", backgroundColor: "teal" }
-                      : { color: "#44c4aa", backgroundColor: "#fff" }
-                  }
-                >
-                  <div className="placeHolderMessage">
-                    <p>You have no wishes yet...</p>
-                    <h2>Start making them come true today</h2>
-                  </div>
-                </div>
-              ) : null}
-
-              <div
-                className="wishlistContainer"
-                style={
-                  wishlistsBank.length > 2
-                    ? { gridTemplateColumns: "repeat(3, 1fr)" }
-                    : wishlistsBank.length === 2
-                    ? { gridTemplateColumns: "repeat(2, 1fr)" }
-                    : { gridTemplateColumns: "1fr" }
-                }
-              >
-                {wishlistsBank.map((wishlist, i) => (
-                  <button
-                    className="btnSingleWishlist"
-                    description={wishlist.description}
-                    name={wishlist.name}
-                    id={wishlist.ID}
-                    onClick={fetchSingleWishlist}
-                    key={i}
-                  >
-                    <h2 id={wishlist.ID}>{wishlist.name}</h2>
-                    <p id={wishlist.ID}>{wishlist.description}</p>
-                  </button>
-                ))}
-              </div>
-              <button
-                className="btnCreateWishList active"
-                onClick={() => setUpdate(true)}
-              >
-                Create wishlist
-              </button>
-              <button type="button" onClick={() => history.goBack()}>
-                Back
-              </button>
-            </section>
-          ) : (
-            <SingleWishlist
-              openWishlist={(data) => setSingleWishlist(data)}
-              fetchWishlists={() => fetchWishlists()}
-              wishlist={singleWishlist}
-              ID={singleWishlist.ID}
               showMessage={(data) => showMessage(data)}
             />
           )}
         </>
       ) : (
-        <div className="wishlistContainer">
-          <CreateWishList
-            setUpdate={(data) => setUpdate(data)}
-            fetchWishlists={() => fetchWishlists()}
-            showMessage={(data) => showMessage(data)}
-          />
-        </div>
+        <CreateWishList
+          setUpdate={(data) => setUpdate(data)}
+          fetchWishlists={() => fetchWishlists()}
+          showMessage={(data) => showMessage(data)}
+        />
       )}
     </>
   );

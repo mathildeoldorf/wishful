@@ -35,16 +35,18 @@ const Home = ({ auth }) => {
       {auth ? (
         <>
           <h2>Welcome back to</h2>
-          <h1>Wishful {user ? user.firstName : null}</h1>
-          <button className="active" onClick={() => history.push("/profile")}>
-            Go to your profile
-          </button>
+          <h1>Wishful, {user ? user.firstName : null}</h1>
+          <div className="grid gridTwoColumns gridGapSmall container">
+            <button className="active" onClick={() => history.push("/profile")}>
+              Go to your profile
+            </button>
+          </div>
         </>
       ) : (
         <>
           <h2>Welcome to</h2>
           <h1>Wishful</h1>
-          <div className="grid gridTwoColumns gridGapSmall">
+          <div className="grid gridTwoColumns gridGapSmall container">
             <button className="active" onClick={() => history.push("/signup")}>
               Signup with email
             </button>

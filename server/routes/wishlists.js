@@ -364,6 +364,7 @@ router.post("/wishlists/:ID/item/", isAuthenticated, async (req, res) => {
         title,
         description,
         price,
+        image,
         link
     } = req.body;
 
@@ -403,6 +404,7 @@ router.post("/wishlists/:ID/item/", isAuthenticated, async (req, res) => {
                 title,
                 description,
                 price,
+                image,
                 isActive: 1
             }).where({
                 ID: wishlistLine[0].ID
@@ -412,6 +414,7 @@ router.post("/wishlists/:ID/item/", isAuthenticated, async (req, res) => {
                 title,
                 description,
                 price: price,
+                image: image,
                 link: link
             }
 
@@ -426,6 +429,7 @@ router.post("/wishlists/:ID/item/", isAuthenticated, async (req, res) => {
             description: description,
             price: price,
             link: link,
+            image: image,
             wishlistID: wishlistID
         });
 
