@@ -44,6 +44,7 @@ router.get("/profile/:userID/wishlists", async (req, res) => {
     try {
         const userWishlists = await Wishlist.query().select().where({
             userID: userID,
+            isPublic: 1,
             isActive: 1
         });
 
@@ -368,7 +369,7 @@ router.post("/wishlists/:ID/item/", isAuthenticated, async (req, res) => {
         link
     } = req.body;
 
-    if (!price || !description || !link || !title) {
+    if (!price || !link || !title) {
         return res.status(400).send({
             response: "Please fill out all the required fields"
         });
@@ -453,10 +454,11 @@ router.post("/wishlists/:wishlistID/item/:ID", isAuthenticated, async (req, res)
         title,
         description,
         price,
-        link
+        link,
+        image
     } = req.body;
 
-    if (!price || !link || !description || !title) {
+    if (!price || !link || !title) {
         return res.status(400).send({
             response: "Please fill out all the required fields"
         });
@@ -487,6 +489,7 @@ router.post("/wishlists/:wishlistID/item/:ID", isAuthenticated, async (req, res)
             description,
             price: price,
             link: link,
+            image: image,
             isActive: 1
         }).where({
             ID: wishlistLine[0].ID

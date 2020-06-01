@@ -20,8 +20,6 @@ const Register = (props) => {
   const history = useHistory();
   const from = props.location.state || { from: { pathname: "/profile" } };
 
-  const [user, setUser] = useState({});
-
   const validateForm = () => {
     return (
       firstName &&
@@ -51,12 +49,8 @@ const Register = (props) => {
       });
 
       let data = response.data;
-      console.log(data);
+      localStorage.setItem("user", JSON.stringify(data.response));
 
-      setUser(data.response);
-
-      localStorage.setItem("user", JSON.stringify(response.data));
-      console.log(JSON.parse(localStorage.user));
       //HANDLE AUTH
       props.onAuth(true);
 
@@ -98,16 +92,6 @@ const Register = (props) => {
                 ></input>
               </div>
               <div className="container grid">
-                <label htmlFor="password">Password</label>
-                <input
-                  id="password"
-                  placeholder="Password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                ></input>
-              </div>
-              <div className="container grid">
                 <label htmlFor="lastName">Last Name</label>
                 <input
                   id="lastName"
@@ -118,16 +102,6 @@ const Register = (props) => {
                 ></input>
               </div>
               <div className="container grid">
-                <label htmlFor="Repeat password">Repeat password</label>
-                <input
-                  id="repeatPassword"
-                  placeholder="repeatPassword"
-                  type="password"
-                  value={repeatPassword}
-                  onChange={(e) => setRepeatPassword(e.target.value)}
-                ></input>
-              </div>
-              <div className="container grid">
                 <label htmlFor="email">Email</label>
                 <input
                   id="email"
@@ -135,6 +109,26 @@ const Register = (props) => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                ></input>
+              </div>
+              <div className="container grid">
+                <label htmlFor="password">Password</label>
+                <input
+                  id="password"
+                  placeholder="Password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                ></input>
+              </div>
+              <div className="container grid">
+                <label htmlFor="Repeat password">Repeat password</label>
+                <input
+                  id="repeatPassword"
+                  placeholder="repeatPassword"
+                  type="password"
+                  value={repeatPassword}
+                  onChange={(e) => setRepeatPassword(e.target.value)}
                 ></input>
               </div>
             </div>

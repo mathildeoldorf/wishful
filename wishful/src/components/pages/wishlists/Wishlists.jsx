@@ -10,16 +10,13 @@ import Message from "./../../Message.jsx";
 import Loader from "../../Loader";
 import WishlistButton from "./WishlistButton";
 
-const Wishlists = (props) => {
+const Wishlists = ({ userID, context }) => {
   const history = useHistory();
 
   const { message, showMessage } = useMessageHandler(null);
   const [loading, setLoading] = useState(false);
 
-  const [user, setUser] = useState(props.user);
-  const [userID, setUserID] = useState(props.userID);
   const [update, setUpdate] = useState(false);
-  const [context, setContext] = useState(props.context);
 
   const [wishlistsBank, setWishlistsBank] = useState([]);
   const [singleWishlist, setSingleWishlist] = useState([]);

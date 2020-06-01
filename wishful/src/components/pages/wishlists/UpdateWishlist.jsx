@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./wishlists.css";
 import axios from "axios";
-import WishlistItem from "./WishlistItem";
 
 const UpdateWishlist = ({
   setUpdate,

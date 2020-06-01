@@ -15,7 +15,7 @@ const Logout = (props) => {
 
   const handleUnAuth = async () => {
     try {
-      let response = await axios.get("http://localhost:9090/user/logout");
+      await axios.get("http://localhost:9090/user/logout");
       props.onAuth(false);
       localStorage.clear();
       history.push("/");

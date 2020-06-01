@@ -7,11 +7,6 @@ import Message from "./../../Message.jsx";
 
 const ResetPassword = (props) => {
   const history = useHistory();
-  const from = props.location.state || {
-    from: {
-      pathname: "profile",
-    },
-  };
 
   if (localStorage.getItem("user")) {
     history.push("/profile");
@@ -74,34 +69,45 @@ const ResetPassword = (props) => {
     <section className="resetPassword">
       <Message resMessage={message} />
       <div className="banner">
-        <p>Here we go</p>
+        <h2>Here we go</h2>
         <h1 className="formHeader">Let's reset your password</h1>
       </div>
-      <form id="resetPassword">
-        <label htmlFor="password"> Password </label>
-        <input
-          id="password"
-          placeholder="Password"
-          type="password"
-          value={password.password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
-        <label htmlFor="repeatPassword"> Repeat password </label>
-        <input
-          id="repeatPassword"
-          placeholder="Repeat your password"
-          type="password"
-          value={password.repeatPassword}
-          onChange={(e) => setRepeatPassword(e.target.value)}
-        ></input>
-        <button
-          className={validateForm() ? "active" : ""}
-          disabled={!validateForm()}
-          onClick={handleSubmit}
-          type="submit"
-        >
-          {loading ? "Loading..." : "Confirm new password"}
-        </button>
+      <form
+        className="grid gridGapSmall gridTwoColumns container"
+        id="resetPassword"
+      >
+        <div className="container">
+          <div className="container grid">
+            <label htmlFor="password"> Password </label>
+            <input
+              id="password"
+              placeholder="Password"
+              type="password"
+              value={password.password}
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
+          </div>
+          <div className="container grid">
+            <label htmlFor="repeatPassword"> Repeat password </label>
+            <input
+              id="repeatPassword"
+              placeholder="Repeat your password"
+              type="password"
+              value={password.repeatPassword}
+              onChange={(e) => setRepeatPassword(e.target.value)}
+            ></input>
+          </div>
+        </div>
+        <div className="relative flexEnd container alignItemsBottom">
+          <button
+            className={validateForm() ? "active" : ""}
+            disabled={!validateForm()}
+            onClick={handleSubmit}
+            type="submit"
+          >
+            {loading ? "Loading..." : "Confirm new password"}
+          </button>
+        </div>
       </form>
     </section>
   );

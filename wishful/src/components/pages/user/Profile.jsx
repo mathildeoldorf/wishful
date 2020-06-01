@@ -23,7 +23,6 @@ const Profile = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [update, setUpdate] = useState(false);
-  const [open, setOpen] = useState(false);
 
   const [loading, setLoading] = useState(true);
   const { message, showMessage } = useMessageHandler(null);
@@ -33,6 +32,10 @@ const Profile = (props) => {
     showPromptMessage,
     closePromptMessage,
   } = usePromptHandler(null);
+
+  // if (!localStorage.getItem("user")) {
+  //   history.push("/");
+  // }
 
   const fetchUser = async () => {
     setLoading(true);
@@ -79,6 +82,7 @@ const Profile = (props) => {
     try {
       let response = await axios.get("http://localhost:9090/user/delete");
       // HANDLE AUTH
+      console.log(response);
       props.onUnAuth(false);
       history.push("/");
       setLoading(false);

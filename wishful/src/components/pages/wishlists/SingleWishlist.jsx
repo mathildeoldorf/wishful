@@ -8,7 +8,7 @@ import Prompt from "./../../Prompt";
 // HANDLE LOADING
 import Loader from "../../Loader";
 
-import WishlistItem from "./WishlistItem";
+// import WishlistItem from "./WishlistItem";
 import UpdateWishList from "./UpdateWishlist";
 import UpdateWishListItem from "./UpdateWishlistItem";
 import CreateWishlistItem from "./CreateWishlistItem";
@@ -208,6 +208,7 @@ const SingleWishlist = ({
                             <a
                               className="secondary text-center"
                               href={wishlistItem.link}
+                              rel="noopener noreferrer"
                               target="_blank"
                             >
                               <div
@@ -255,6 +256,7 @@ const SingleWishlist = ({
                                 <a
                                   className="secondary text-center"
                                   href={wishlistItem.link}
+                                  rel="noopener noreferrer"
                                   target="_blank"
                                 >
                                   See item
@@ -303,6 +305,7 @@ const SingleWishlist = ({
                               <a
                                 className="secondary text-center"
                                 href={wishlistItem.link}
+                                rel="noopener noreferrer"
                                 target="_blank"
                               >
                                 <div
@@ -346,6 +349,7 @@ const SingleWishlist = ({
                                   <a
                                     className="secondary text-center"
                                     href={wishlistItem.link}
+                                    rel="noopener noreferrer"
                                     target="_blank"
                                   >
                                     See item
@@ -467,7 +471,7 @@ const SingleWishlist = ({
           showMessage={(data) => showMessage(data)}
           singleWishlist={singleWishlist}
         />
-      ) : update == "item" ? (
+      ) : update === "item" ? (
         <UpdateWishListItem
           KeyLink={KeyLink}
           ID={wishlistItemID}

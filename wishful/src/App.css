@@ -426,58 +426,6 @@ label {
   }
 }
 
-/* 
-
-.public .formContainer {
-  background-color: #fff;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  min-height: 35vw;
-  max-height: 35vw;
-  display: grid;
-  align-self: center;
-  justify-self: center;
-  padding-top: 8%;
-}
-
-section.public {
-  align-items: center;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  overflow: hidden;
-  background-color: transparent;
-}
-
-.public .containerContent {
-  padding: 0;
-  display: grid;
-  width: 100%;
-  height: 100%;
-  background-color: teal;
-  color: #fff;
-  display: grid;
-  align-content: center;
-  padding: 0 10%;
-}
-
-.public .banner {
-  z-index: 1;
-  background-color: transparent;
-}
-
-.public .formContainer .banner {
-  background-color: teal;
-} */
-
-/* ########################### CONTAINERS */
-
-.sepContainer {
-  padding: 2% 0;
-}
-
 /* ########################### FONTS AND HEADERS */
 
 h1,
@@ -553,27 +501,6 @@ a.secondary {
 .text-right {
   text-align: right;
 }
-
-/* ########################### BANNER */
-
-/* .banner {
-  background-color: teal;
-  color: #fff;
-  height: auto;
-  display: grid;
-  align-content: center;
-  padding: 3% 10%;
-} */
-
-/* @media screen and (max-width: 800px) {
-  .banner {
-    padding: 10% 20%;
-  }
-}
-
-.bannerNarrow {
-  height: 7vw;
-} */
 
 /* ########################### PLACEHOLDER CONTENT STYLING */
 

@@ -12,7 +12,7 @@ const Prompt = ({
       <div className="prompt alignItemsCenter">
         <div className="banner">
           <h2>{resPromptHeader}</h2>
-          <h1>{resPromptMessage}</h1>
+          <h1 className="headerPrompt">{resPromptMessage}</h1>
         </div>
         <div className="grid gridTwoColumns alignItemsBottom gridGapSmall">
           <button className="active" onClick={confirmAction}>

@@ -31,7 +31,13 @@ const CreateWishlistItem = ({
 
       let dataLinkPreview = linkPreviewResponse.data;
 
-      console.log(dataLinkPreview.image);
+      const image =
+        dataLinkPreview.image === ""
+          ? (dataLinkPreview.image =
+              "https://dummyimage.com/400x400/494949/f9f9f9.png&text=No+image")
+          : dataLinkPreview.image;
+
+      console.log(image);
 
       let response = await axios.post(
         `http://localhost:9090/wishlists/${wishlistID}/item`,
@@ -40,7 +46,7 @@ const CreateWishlistItem = ({
           description: dataLinkPreview.description,
           price: price,
           link: dataLinkPreview.url,
-          image: dataLinkPreview.image,
+          image: image,
         }
       );
 

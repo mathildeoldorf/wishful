@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./wishlists.css";
 import axios from "axios";
+const path = require("path");
 
 const UpdateWishlistItem = ({
   wishlistID,
@@ -33,6 +34,19 @@ const UpdateWishlistItem = ({
       );
 
       let dataLinkPreview = linkPreviewResponse.data;
+      console.log(
+        path.join(__dirname, "..", "..", "..", "images", "imageThumbnail.png")
+        // "../../../images/imageThumbail.png"
+      );
+
+      const image =
+        dataLinkPreview.image === ""
+          ? (dataLinkPreview.image =
+              "https://dummyimage.com/400x400/494949/f9f9f9.png&text=No+image")
+          : dataLinkPreview.image;
+      // path.join(__dirname, "..", "..", "..", "images", "imageThumbnail.png"))
+
+      console.log(image);
 
       let response = await axios.post(
         `http://localhost:9090/wishlists/${wishlistID}/item/${wishlistItem.ID}`,
@@ -41,6 +55,7 @@ const UpdateWishlistItem = ({
           description: dataLinkPreview.description,
           price: price,
           link: dataLinkPreview.url,
+          image: image,
         }
       );
 
@@ -61,7 +76,14 @@ const UpdateWishlistItem = ({
   };
 
   return (
-    <section>
+    <section className="updateWishlistItem relative">
+      <button
+        className="secondary absolute textLeft left"
+        type="button"
+        onClick={() => setOpen(false)}
+      >
+        Back
+      </button>
       <div className="banner">
         <h2>Almost done...</h2>
         <h1>Simply link the item of your dreams</h1>
@@ -100,13 +122,6 @@ const UpdateWishlistItem = ({
             disabled={!validateForm()}
           >
             {!loading ? "Save item" : "Loading..."}
-          </button>
-          <button
-            className="marginTopSmall"
-            type="button"
-            onClick={() => setOpen(false)}
-          >
-            Back
           </button>
         </div>
       </form>
