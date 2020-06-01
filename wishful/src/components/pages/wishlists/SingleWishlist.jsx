@@ -12,6 +12,7 @@ import Loader from "../../Loader";
 import UpdateWishList from "./UpdateWishlist";
 import UpdateWishListItem from "./UpdateWishlistItem";
 import CreateWishlistItem from "./CreateWishlistItem";
+import { useParams } from "react-router-dom";
 
 const SingleWishlist = ({
   userID,
@@ -31,6 +32,9 @@ const SingleWishlist = ({
     showPromptMessage,
     closePromptMessage,
   } = usePromptHandler(null);
+
+  // const { ID } = useParams();
+  // console.log(ID);
 
   const letter = wishlist.name.charAt(0);
   const [open, setOpen] = useState(false);
@@ -164,28 +168,29 @@ const SingleWishlist = ({
           <>
             {wishlistItems.length !== 0 ? (
               <>
-                <div
-                  // className={!context ? "banner grid gridTwoThirds" : "banner"}
-                  className="banner grid gridTwoThirds"
-                >
+                <div className="banner grid gridTwoThirds">
                   <div>
                     <h2>Overview</h2>
                     <h1>{singleWishlist.name}</h1>
                     <h3>{singleWishlist.description}</h3>
                     <div className="btnContainer grid gridTwoColumns justifyContentLeft">
-                      <button
-                        className="secondary textLeft"
-                        onClick={(event) => handleUpdate(event, "wishlist")}
-                      >
-                        Edit {singleWishlist.name}
-                      </button>
-                      <button
-                        className="secondary textLeft"
-                        type="button"
-                        onClick={(event) => handleDelete(event, "wishlist")}
-                      >
-                        Delete {singleWishlist.name}
-                      </button>
+                      {!context ? (
+                        <>
+                          <button
+                            className="secondary textLeft"
+                            onClick={(event) => handleUpdate(event, "wishlist")}
+                          >
+                            Edit {singleWishlist.name}
+                          </button>
+                          <button
+                            className="secondary textLeft"
+                            type="button"
+                            onClick={(event) => handleDelete(event, "wishlist")}
+                          >
+                            Delete {singleWishlist.name}
+                          </button>
+                        </>
+                      ) : null}
                     </div>
                   </div>
                   {!context ? (

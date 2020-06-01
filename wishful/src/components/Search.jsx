@@ -42,7 +42,7 @@ const Search = ({ setSearchID }) => {
     setTimeout(() => {
       setSearchResults("");
       setActive(false);
-    }, 100);
+    }, 200);
   };
 
   const fetchProfile = (result) => {
@@ -77,10 +77,7 @@ const Search = ({ setSearchID }) => {
         )}
       </form>
       {searchResults.length !== 0 && searchResults !== "No result" ? (
-        <div
-          className="searchResults"
-          // style={active ? { display: "grid" } : { display: "grid" }}
-        >
+        <div className="searchResults">
           {searchResults.map((result, i) => (
             <p
               className="btnResult"
@@ -93,10 +90,7 @@ const Search = ({ setSearchID }) => {
           ))}
         </div>
       ) : searchResults === "No result" ? (
-        <div
-          className="searchResults"
-          // style={active ? { display: "grid" } : { display: "grid" }}
-        >
+        <div className="searchResults">
           <p>{searchResults}</p>
         </div>
       ) : null}
