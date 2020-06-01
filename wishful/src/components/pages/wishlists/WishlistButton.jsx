@@ -1,18 +1,21 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-const WishlistButton = ({ i, wishlist, fetchSingleWishlist }) => {
+const WishlistButton = ({ i, wishlist, userID, context }) => {
+  const history = useHistory();
+
   const letter = wishlist.name.charAt(0);
 
   const handleClick = (e) => {
     e.preventDefault();
-    fetchSingleWishlist(wishlist);
+    context
+      ? history.push(`/profile/${userID}/wishlist/${wishlist.ID}`)
+      : history.push(`/wishlists/wishlist/${wishlist.ID}`);
   };
 
   return (
     <button
       className="btnSingleWishlist relative"
-      description={wishlist.description}
-      name={wishlist.name}
       id={wishlist.ID}
       onClick={handleClick}
       key={i}

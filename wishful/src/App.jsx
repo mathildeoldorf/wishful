@@ -22,6 +22,7 @@ import Wishlists from "./components/pages/wishlists/Wishlists.jsx";
 import Search from "./components/Search.jsx";
 
 import axios from "axios";
+import SingleWishlist from "./components/pages/wishlists/SingleWishlist";
 axios.defaults.withCredentials = true; //makes sure the cookies are the same for all routes
 
 const AuthenticatedRoute = ({ component: Component, auth, ...rest }) => {
@@ -55,7 +56,7 @@ const App = (props) => {
     try {
       // const response = await axios.get("http://localhost:9090/user/authorize");
       const response = await axios.get(
-        "http://ec2-54-90-37-154.compute-1.amazonaws.com/authorize"
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/user/authorize"
       );
       setAuth(response.data);
     } catch (error) {
@@ -176,6 +177,16 @@ const App = (props) => {
               auth={auth}
               path={`${process.env.PUBLIC_URL}/wishlists`}
               component={(props) => <Wishlists {...props} />}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/wishlists/wishlist/:wishlistID`}
+              component={(props) => <SingleWishlist {...props} />}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/profile/:ID/wishlist/:wishlistID`}
+              component={(props) => <SingleWishlist {...props} />}
             />
             <AuthenticatedRoute
               exact

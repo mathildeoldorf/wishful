@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import SingleWishlist from "./SingleWishlist";
+import { useHistory, Link } from "react-router-dom";
 import "./wishlists.css";
 import axios from "axios";
 import CreateWishList from "./CreateWishlist.jsx";
@@ -19,7 +18,6 @@ const Wishlists = ({ userID, context }) => {
   const [update, setUpdate] = useState(false);
 
   const [wishlistsBank, setWishlistsBank] = useState([]);
-  const [singleWishlist, setSingleWishlist] = useState([]);
 
   useEffect(() => {
     fetchWishlists();
@@ -61,92 +59,77 @@ const Wishlists = ({ userID, context }) => {
     }
   };
 
-  const fetchSingleWishlist = (data) => {
-    setSingleWishlist(data);
-  };
-
   return (
     <>
       {loading ? <Loader /> : null}
       <Message resMessage={message} />
       {!update ? (
         <>
-          {singleWishlist.length === 0 ? (
-            <section
+          <section
+            className={
+              !context
+                ? "wishlists relative"
+                : "wishlists relative marginTopMedium"
+            }
+          >
+            <button
+              className="secondary absolute textLeft left"
+              type="button"
+              onClick={() => history.goBack()}
+            >
+              Back
+            </button>
+            <div
               className={
                 !context
-                  ? "wishlists relative"
-                  : "wishlists relative marginTopMedium"
+                  ? "banner relative grid gridTwoThirds"
+                  : "banner relative"
               }
             >
-              <button
-                className="secondary absolute textLeft left"
-                type="button"
-                onClick={() => history.goBack()}
-              >
-                Back
-              </button>
-              <div
-                className={
-                  !context
-                    ? "banner relative grid gridTwoThirds"
-                    : "banner relative"
-                }
-              >
-                <div>
-                  <h2>Overview</h2>
-                  <h1>Wishlists</h1>
+              <div>
+                <h2>Overview</h2>
+                <h1>Wishlists</h1>
+              </div>
+              {!context && wishlistsBank.length ? (
+                <div className="relative flexEnd alignItemsBottom">
+                  <button
+                    className="btnCreateWishList active"
+                    onClick={() => setUpdate(true)}
+                  >
+                    Create wishlist
+                  </button>
                 </div>
-                {!context && wishlistsBank.length ? (
-                  <div className="relative flexEnd alignItemsBottom">
+              ) : null}
+            </div>
+            {!wishlistsBank.length ? (
+              <div className="banner">
+                {!context ? (
+                  <div className="container grid justifyContentCenter">
                     <button
-                      className="btnCreateWishList active"
+                      className="btnCreateWishList active marginTopSmall"
                       onClick={() => setUpdate(true)}
                     >
                       Create wishlist
                     </button>
                   </div>
-                ) : null}
+                ) : (
+                  <h2>No wishlists yet...</h2>
+                )}
               </div>
-              {!wishlistsBank.length ? (
-                <div className="banner">
-                  {!context ? (
-                    <div className="container grid justifyContentCenter">
-                      <button
-                        className="btnCreateWishList active marginTopSmall"
-                        onClick={() => setUpdate(true)}
-                      >
-                        Create wishlist
-                      </button>
-                    </div>
-                  ) : (
-                    <h2>No wishlists yet...</h2>
-                  )}
-                </div>
-              ) : (
-                <div className="wishlistContainer grid gridFourColumns container gridGapSmall">
-                  {wishlistsBank.map((wishlist, i) => (
-                    <WishlistButton
-                      i={i}
-                      key={i}
-                      wishlist={wishlist}
-                      fetchSingleWishlist={(data) => fetchSingleWishlist(data)}
-                    />
-                  ))}
-                </div>
-              )}
-            </section>
-          ) : (
-            <SingleWishlist
-              userID={userID}
-              context={context}
-              openWishlist={(data) => setSingleWishlist(data)}
-              fetchWishlists={() => fetchWishlists()}
-              wishlist={singleWishlist}
-              ID={singleWishlist.ID}
-              showMessage={(data) => showMessage(data)}
-            />
-          )}
+            ) : (
+              <div className="wishlistContainer grid gridFourColumns container gridGapSmall">
+                {wishlistsBank.map((wishlist, i) => (
+                  <WishlistButton
+                    userID={userID}
+                    context={context}
+                    i={i}
+                    key={i}
+                    wishlist={wishlist}
+                  />
+                ))}
+              </div>
+            )}
+          </section>
         </>
       ) : (
         <CreateWishList

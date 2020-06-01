@@ -12,18 +12,16 @@ import Loader from "../../Loader";
 import UpdateWishList from "./UpdateWishlist";
 import UpdateWishListItem from "./UpdateWishlistItem";
 import CreateWishlistItem from "./CreateWishlistItem";
-import { useParams } from "react-router-dom";
 
-const SingleWishlist = ({
-  userID,
-  context,
-  wishlist,
-  ID,
-  openWishlist,
-  fetchWishlists,
-  showMessage,
-}) => {
+import useMessageHandler from "../../hooks/MessageHandler.jsx";
+import Message from "./../../Message.jsx";
+import { useHistory } from "react-router-dom";
+
+const SingleWishlist = (props) => {
   const KeyLink = API.KeyLink;
+
+  const { message, showMessage } = useMessageHandler(null);
+  const history = useHistory();
 
   const [loading, setLoading] = useState(false);
   const {
@@ -33,21 +31,22 @@ const SingleWishlist = ({
     closePromptMessage,
   } = usePromptHandler(null);
 
-  // const { ID } = useParams();
-  // console.log(ID);
+  const ID = props.match.params.wishlistID;
+  const context = props.match.params.ID ? "public" : undefined;
+  const userID = props.match.params.ID;
 
-  const letter = wishlist.name.charAt(0);
+  const [singleWishlist, setWishList] = useState({});
+  const [wishlistItems, setWishListItems] = useState([]);
+  const [wishlistItemID, setWishListItemID] = useState([]);
+  const [wishlistItem, setWishListItem] = useState("");
+  const [letter, setLetter] = useState("");
+
   const [open, setOpen] = useState(false);
   const [update, setUpdate] = useState(false);
   const [showItems, setShowItems] = useState(false);
   const [showText, setShowText] = useState(false);
 
   const [deleteType, setDeleteType] = useState("");
-
-  const [singleWishlist, setWishList] = useState(wishlist);
-  const [wishlistItems, setWishListItems] = useState([]);
-  const [wishlistItemID, setWishListItemID] = useState([]);
-  const [wishlistItem, setWishListItem] = useState("");
 
   const fetchWishlist = async () => {
     setLoading(true);
@@ -71,6 +70,8 @@ const SingleWishlist = ({
       setWishList(data.list);
       setWishListItems(data.items);
       setLoading(false);
+
+      setLetter(data.list.name.charAt(0));
     } catch (error) {
       setLoading(false);
       // HANDLE ERROR
@@ -126,8 +127,7 @@ const SingleWishlist = ({
           // `http://localhost:9090/wishlists/${ID}/delete`
           `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}/delete`
         );
-        openWishlist([]);
-        fetchWishlists();
+        history.goBack();
       }
 
       let data = response.data.response;
@@ -146,6 +146,7 @@ const SingleWishlist = ({
   return (
     <>
       {loading ? <Loader /> : null}
+      <Message resMessage={message} />
       {!context && promptMessage ? (
         <Prompt
           resPromptMessage={promptMessage}
@@ -160,7 +161,7 @@ const SingleWishlist = ({
           <button
             className="secondary absolute textLeft"
             type="button"
-            onClick={() => openWishlist([])}
+            onClick={() => history.goBack()}
           >
             Back
           </button>
@@ -223,7 +224,7 @@ const SingleWishlist = ({
                               target="_blank"
                             >
                               <div
-                                className="img bgCover"
+                                className="img bgContain"
                                 style={{
                                   backgroundImage: `url(${wishlistItem.image})`,
                                 }}
@@ -262,7 +263,11 @@ const SingleWishlist = ({
 
                               <div
                                 id={wishlistItem.ID}
-                                className="grid gridTwoColumns justifyContentCenter alignSelfCenter paddingSmall"
+                                className={
+                                  context
+                                    ? "grid justifyContentCenter alignSelfCenter paddingSmall"
+                                    : "grid gridTwoColumns justifyContentCenter alignSelfCenter paddingSmall"
+                                }
                               >
                                 <a
                                   className="secondary text-center"
@@ -276,7 +281,7 @@ const SingleWishlist = ({
                                   <>
                                     <button
                                       id={wishlistItem.ID}
-                                      className="secondary absolute"
+                                      className="secondary absolute right"
                                       onClick={(event) =>
                                         handleDelete(event, "item")
                                       }
@@ -293,7 +298,7 @@ const SingleWishlist = ({
                                         )
                                       }
                                     >
-                                      Update item
+                                      Edit item
                                     </button>
                                   </>
                                 ) : null}
@@ -320,7 +325,7 @@ const SingleWishlist = ({
                                 target="_blank"
                               >
                                 <div
-                                  className="img bgCover"
+                                  className="img bgContain"
                                   style={{
                                     backgroundImage: `url(${wishlistItem.image})`,
                                   }}
@@ -356,7 +361,13 @@ const SingleWishlist = ({
                                 <p className="alignSelfTop textRight">
                                   {wishlistItem.price}
                                 </p>
-                                <div className="grid gridTwoColumns justifyContentCenter alignSelfCenter paddingSmall">
+                                <div
+                                  className={
+                                    context
+                                      ? "grid justifyContentCenter alignSelfCenter paddingSmall"
+                                      : "grid gridTwoColumns justifyContentCenter alignSelfCenter paddingSmall"
+                                  }
+                                >
                                   <a
                                     className="secondary text-center"
                                     href={wishlistItem.link}
@@ -420,7 +431,6 @@ const SingleWishlist = ({
             ) : (
               <>
                 <div className="banner grid gridTwoThirds">
-                  {/* <div> */}
                   {!context ? (
                     <>
                       <div>
@@ -461,7 +471,6 @@ const SingleWishlist = ({
                       <h1 className="headerSection">Stay tuned for wishes</h1>
                     </div>
                   )}
-                  {/* </div> */}
                 </div>
               </>
             )}
