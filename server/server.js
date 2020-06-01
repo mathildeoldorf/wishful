@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const session = require("express-session");
 const app = express();
+const path = require("path");
 
 app.use(helmet());
 
@@ -32,6 +33,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.use("/", express.static(path.join(__dirname, "public")));
 
 // ROUTES
 const userRoute = require("./routes/user");
