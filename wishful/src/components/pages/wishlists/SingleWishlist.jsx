@@ -51,10 +51,14 @@ const SingleWishlist = ({
 
     try {
       if (!context) {
-        response = await axios.get(`http://localhost:9090/wishlists/${ID}`);
+        // response = await axios.get(`http://localhost:9090/wishlists/${ID}`);
+        response = await axios.get(
+          `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}`
+        );
       } else {
         response = await axios.get(
-          `http://localhost:9090/profile/${userID}/wishlists/${ID}`
+          // `http://localhost:9090/profile/${userID}/wishlists/${ID}`
+          `http://ec2-54-90-37-154.compute-1.amazonaws.com/profile/${userID}/wishlists/${ID}`
         );
       }
 
@@ -109,12 +113,14 @@ const SingleWishlist = ({
     try {
       if (deleteType === "item") {
         response = await axios.get(
-          `http://localhost:9090/wishlists/${ID}/item/${wishlistItemID}/delete`
+          // `http://localhost:9090/wishlists/${ID}/item/${wishlistItemID}/delete`
+          `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}/item/${wishlistItemID}/delete`
         );
         fetchWishlist();
       } else {
         response = await axios.get(
-          `http://localhost:9090/wishlists/${ID}/delete`
+          // `http://localhost:9090/wishlists/${ID}/delete`
+          `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}/delete`
         );
         openWishlist([]);
         fetchWishlists();

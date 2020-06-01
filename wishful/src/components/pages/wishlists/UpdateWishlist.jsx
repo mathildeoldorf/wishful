@@ -24,7 +24,8 @@ const UpdateWishlist = ({
     event.preventDefault();
     try {
       let response = await axios.post(
-        `http://localhost:9090/wishlists/${singleWishlist.ID}`,
+        // `http://localhost:9090/wishlists/${singleWishlist.ID}`,
+        `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${singleWishlist.ID}`,
         {
           name: name,
           description: description,

@@ -42,10 +42,14 @@ const Login = (props) => {
       setLoading(true);
 
       //HANDLE FETCH DATA
-      let response = await axios.post("http://localhost:9090/user/login", {
-        email: email,
-        password: password,
-      });
+      // let response = await axios.post("http://localhost:9090/user/login",
+      let response = await axios.post(
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/user/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
 
       //HANDLE AUTH
       props.onAuth(true);

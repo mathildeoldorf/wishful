@@ -40,7 +40,8 @@ const CreateWishlistItem = ({
       console.log(image);
 
       let response = await axios.post(
-        `http://localhost:9090/wishlists/${wishlistID}/item`,
+        // `http://localhost:9090/wishlists/${wishlistID}/item`,
+        `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${wishlistID}/item`,
         {
           title: dataLinkPreview.title,
           description: dataLinkPreview.description,

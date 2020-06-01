@@ -40,7 +40,10 @@ const Profile = (props) => {
   const fetchUser = async () => {
     setLoading(true);
     try {
-      let response = await axios.get("http://localhost:9090/user/profile");
+      // let response = await axios.get("http://localhost:9090/user/profile");
+      let response = await axios.get(
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/user/profile"
+      );
       let data = response.data.response;
       setUser(data);
       setEmail(data.email);
@@ -80,7 +83,10 @@ const Profile = (props) => {
   const confirmDelete = async () => {
     setLoading(true);
     try {
-      let response = await axios.get("http://localhost:9090/user/delete");
+      // let response = await axios.get("http://localhost:9090/user/delete");
+      let response = await axios.get(
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/user/delete"
+      );
       // HANDLE AUTH
       console.log(response);
       props.onUnAuth(false);
@@ -103,11 +109,15 @@ const Profile = (props) => {
     event.preventDefault();
 
     try {
-      let response = await axios.post("http://localhost:9090/user/profile", {
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-      });
+      // let response = await axios.post("http://localhost:9090/user/profile",
+      let response = await axios.post(
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/user/profile",
+        {
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+        }
+      );
       console.log(response);
       let data = response.data;
       console.log(data);

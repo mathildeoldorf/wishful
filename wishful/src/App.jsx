@@ -53,7 +53,10 @@ const App = (props) => {
 
   const fetchAuthorization = async () => {
     try {
-      const response = await axios.get("http://localhost:9090/user/authorize");
+      // const response = await axios.get("http://localhost:9090/user/authorize");
+      const response = await axios.get(
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/authorize"
+      );
       setAuth(response.data);
     } catch (error) {
       setAuth(false);

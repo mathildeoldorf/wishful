@@ -40,13 +40,17 @@ const Register = (props) => {
     event.preventDefault();
 
     try {
-      let response = await axios.post("http://localhost:9090/user/signup", {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        repeatPassword: repeatPassword,
-      });
+      let response = await axios.post(
+        // "http://localhost:9090/user/signup"
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/user/signup",
+        {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          repeatPassword: repeatPassword,
+        }
+      );
 
       let data = response.data;
       localStorage.setItem("user", JSON.stringify(data.response));

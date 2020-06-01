@@ -10,7 +10,10 @@ const Home = ({ auth }) => {
 
   const fetchUser = async () => {
     try {
-      let response = await axios.get("http://localhost:9090/user/profile");
+      // let response = await axios.get("http://localhost:9090/user/profile");
+      let response = await axios.get(
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/user/profile"
+      );
       let data = response.data.response;
       setUser(data);
       setTimeout(() => {

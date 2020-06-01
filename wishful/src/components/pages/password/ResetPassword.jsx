@@ -30,11 +30,15 @@ const ResetPassword = (props) => {
       setLoading(true);
 
       //HANDLE FETCH DATA
-      let response = await axios.post("http://localhost:9090/confirmReset/", {
-        password: password,
-        repeatPassword: repeatPassword,
-        token: userToken,
-      });
+      // let response = await axios.post("http://localhost:9090/confirmReset/",
+      let response = await axios.post(
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/",
+        {
+          password: password,
+          repeatPassword: repeatPassword,
+          token: userToken,
+        }
+      );
 
       let data = response.data.response;
 

@@ -16,7 +16,8 @@ const ProfilePublic = (props) => {
     setLoading(true);
     try {
       let response = await axios.get(
-        `http://localhost:9090/user/profile/${ID}`
+        // `http://localhost:9090/user/profile/${ID}`
+        `http://ec2-54-90-37-154.compute-1.amazonaws.com/user/profile/${ID}`
       );
       let data = response.data.response;
       setUser(data);

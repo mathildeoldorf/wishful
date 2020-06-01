@@ -2,6 +2,7 @@
   "name": "quizdom",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://ec2-54-90-37-154.compute-1.amazonaws.com/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",

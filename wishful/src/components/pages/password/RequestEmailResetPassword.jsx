@@ -32,9 +32,13 @@ const RequestEmailResetPassword = (props) => {
       setLoading(true);
 
       // HANDLE FETCH DATA
-      let response = await axios.post("http://localhost:9090/requestReset", {
-        email: email,
-      });
+      // let response = await axios.post("http://localhost:9090/requestReset"
+      let response = await axios.post(
+        "http://ec2-54-90-37-154.compute-1.amazonaws.com/requestReset",
+        {
+          email: email,
+        }
+      );
       let data = response.data.response;
       console.log(data);
       setLoading(false);
