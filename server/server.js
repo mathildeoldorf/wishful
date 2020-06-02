@@ -38,12 +38,13 @@ app.use("/", express.static(path.join(__dirname, "public")));
 
 // ROUTES
 const userRoute = require("./routes/user");
-const indexRoute = require("./routes/index");
 const wishlistRoute = require("./routes/wishlists");
 const resetPasswordRoute = require("./routes/resetPassword");
 
 // SETUP THE DATABASE
-const { Model } = require("objection");
+const {
+  Model
+} = require("objection");
 const Knex = require("knex");
 const KnexFile = require("./knexfile.js");
 
@@ -55,9 +56,9 @@ const authlimiter = rateLimit({
 });
 
 // KNEX CONNECTION WITH CREDENTIALS FROM CONFIG
-const knex = process.env.PORTDEV
-  ? Knex(KnexFile.development)
-  : Knex(KnexFile.production);
+const knex = process.env.PORTDEV ?
+  Knex(KnexFile.development) :
+  Knex(KnexFile.production);
 // const knex = Knex(KnexFile.production);
 
 // GIVE KNEX CONNECTION INSTANCE TO OBJECTION
@@ -66,13 +67,14 @@ Model.knex(knex);
 // ROUTES
 app.use(wishlistRoute);
 app.use(userRoute, authlimiter);
-app.use(indexRoute);
 app.use(resetPasswordRoute);
 
 // START THE SERVER
-const port = process.env.PORTDEV
-  ? process.env.PORTDEV || 9090
-  : process.env.PORT || 80;
+// const port = process.env.PORTDEV
+//   ? process.env.PORTDEV || 9090
+//   : process.env.PORT || 80;
+
+const port = process.env.PORT || 80;
 
 const server = app.listen(port, (error) => {
   if (error) {
