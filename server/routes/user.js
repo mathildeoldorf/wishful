@@ -151,6 +151,7 @@ router.post("/user/signup", async (req, res) => {
       });
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).send({
       response: "Something went wrong, please try again",
     });
