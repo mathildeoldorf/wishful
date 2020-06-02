@@ -8,6 +8,7 @@ import {
   Link,
   NavLink,
   Redirect,
+  HashRouter,
 } from "react-router-dom";
 
 import Home from "./components/pages/home/Home.jsx";
@@ -83,7 +84,7 @@ const App = (props) => {
   }, [auth]);
 
   return (
-    <Router basename={"/"}>
+    <HashRouter basename={"/"}>
       <div className="App">
         <nav className="Navigation">
           <ul
@@ -242,7 +243,7 @@ const App = (props) => {
         </main>
         <footer></footer>
       </div>
-    </Router>
+    </HashRouter>
   );
 };
 

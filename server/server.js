@@ -70,11 +70,11 @@ app.use(userRoute, authlimiter);
 app.use(resetPasswordRoute);
 
 // START THE SERVER
-// const port = process.env.PORTDEV
-//   ? process.env.PORTDEV || 9090
-//   : process.env.PORT || 80;
+const port = process.env.PORTDEV ?
+  process.env.PORTDEV || 9090 :
+  process.env.PORT || 80;
 
-const port = process.env.PORT || 80;
+// const port = process.env.PORT || 80;
 
 const server = app.listen(port, (error) => {
   if (error) {
