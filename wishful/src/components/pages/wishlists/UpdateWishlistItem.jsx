@@ -42,7 +42,8 @@ const UpdateWishlistItem = ({
       const image =
         dataLinkPreview.image === ""
           ? (dataLinkPreview.image =
-              "https://dummyimage.com/400x400/494949/f9f9f9.png&text=No+image")
+              // "https://dummyimage.com/400x400/494949/f9f9f9.png&text=No+image")
+              "/images/imageThumbnail.png")
           : dataLinkPreview.image;
       // path.join(__dirname, "..", "..", "..", "images", "imageThumbnail.png"))
 
