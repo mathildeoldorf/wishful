@@ -88,7 +88,9 @@ const UpdateWishlistItem = ({
       </button>
       <div className="banner">
         <h2>Almost done...</h2>
-        <h1>Simply link the item of your dreams</h1>
+        <h1>
+          Simply update the information to make it the item of your dreams
+        </h1>
       </div>
       <form
         className="grid gridGapSmall gridTwoColumns container"
