@@ -4,7 +4,7 @@
   top: 0;
   width: 100%;
   min-height: 100vh;
-  height: auto;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.486);
 }
 
@@ -14,9 +14,9 @@
   background-color: #fff;
   padding: 10vw;
   width: 50vw;
-  height: 35vw;
+  height: 50vh;
   left: 25%;
-  top: 19%;
+  top: 25vh;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
     0 3px 6px rgba(0, 0, 0, 0.23);
@@ -115,8 +115,8 @@
 
 #search.active {
   width: 20vw;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-    ".SFNSText-Regular", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular",
+    sans-serif;
   text-align: left;
   padding: 0 2vw;
   border: none;
@@ -127,7 +127,6 @@
   align-items: top;
   padding: 3vw 1vw;
   top: 6vw;
-  /* z-index: 0; */
   right: 2vw;
   width: 20vw;
   height: auto;
