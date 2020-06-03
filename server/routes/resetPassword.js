@@ -73,7 +73,6 @@ router.post("/requestReset", async (req, res) => {
                 }
             }); // End setup transporter
 
-            // const emailOutput = `<h1>Reset password</h1> <p>Please follow the <a href="http://localhost:3000/confirmReset/${token}">link</a> to reset your password</p>`;
             const emailOutput = `
             <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -371,13 +370,14 @@ router.post("/requestReset", async (req, res) => {
 
             const mailOptions = {
                 from: "mathildeatkea@gmail.com",
-                to: "mathildeatkea@gmail.com",
+                to: email,
                 subject: "Wishful | Reset password",
                 text: "Use this link to reset your password. The link is only valid for 24 hours.",
                 html: emailOutput
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
+                console.log(info);
                 if (error) {
                     console.log(error)
                     return res.status(502).send({

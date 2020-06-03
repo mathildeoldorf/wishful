@@ -410,23 +410,25 @@ const SingleWishlist = (props) => {
                     </>
                   )}
                 </div>
-                <div className="grid container justifyContentCenter">
-                  {wishlistItems.length > 4 && !showItems ? (
+                {wishlistItems.length > 4 && !showItems ? (
+                  <div className="grid container justifyContentCenter">
                     <button
                       className="secondary text-center"
                       onClick={() => setShowItems(true)}
                     >
                       Show all
                     </button>
-                  ) : wishlistItems.length > 4 && showItems ? (
+                  </div>
+                ) : wishlistItems.length > 4 && showItems ? (
+                  <div className="grid container justifyContentCenter marginTopSmall">
                     <button
                       className="secondary text-center"
                       onClick={() => setShowItems(false)}
                     >
                       Show less
                     </button>
-                  ) : null}
-                </div>
+                  </div>
+                ) : null}
               </>
             ) : (
               <>
