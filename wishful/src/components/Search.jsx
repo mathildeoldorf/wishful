@@ -11,9 +11,14 @@ const Search = ({ setSearchID }) => {
     e.target.value.length === 0 ? hideSearchContainer() : showSearchContainer();
 
     try {
+      // const response = await axios.get(
+      //   `http://localhost:9090/search?term=${e.target.value}`
+      //   // `http://ec2-54-90-37-154.compute-1.amazonaws.com/search/users?term=${e.target.value}`
+      // );
+
       const response = await axios.get(
-        // `http://localhost:9090/search?term=${e.target.value}`
-        `http://ec2-54-90-37-154.compute-1.amazonaws.com/search?term=${e.target.value}`
+        // `http://localhost:9090/search/users?term=${e.target.value}`
+        `http://ec2-54-90-37-154.compute-1.amazonaws.com/search/users?term=${e.target.value}`
       );
 
       let data = response.data.response;

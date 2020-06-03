@@ -440,7 +440,7 @@ router.get("/users", async (req, res) => {
 
 // ###################################### SEARCH FOR USERS
 
-router.get("/search", async (req, res) => {
+router.get("/search/users", async (req, res) => {
   let term = req.query.term;
 
   try {
