@@ -78,8 +78,8 @@
   width: 100%;
   min-height: 100vh;
   height: 100%;
+  overflow: hidden;
   max-height: 300vh;
-  position: absolute;
   background-color: #daedef;
   display: grid;
   align-items: center;

@@ -476,4 +476,61 @@ router.get("/search/users", async (req, res) => {
   }
 });
 
+router.get("/search", async (req, res) => {
+  let term = req.query.term;
+
+  try {
+    let users = await User.query()
+      .select(
+        'ID',
+        'firstName',
+        'lastName'
+      )
+      .where(
+        'firstName', 'like', `${term}%`
+      )
+      .orWhere(
+        'lastName', 'like', `${term}%`
+      )
+      .andWhere({
+        isActive: 1
+      })
+
+    let wishlists = await Wishlist.query().select(
+        'ID',
+        'name',
+        'userID'
+      )
+      .where(
+        'name', 'like', `${term}%`
+      )
+      .andWhere({
+        isActive: 1,
+        isPublic: 1
+      })
+
+    if (!users[0] && !wishlists[0]) {
+      return res.status(404).send({
+        response: "No result",
+      });
+    }
+
+    console.log(users);
+    console.log(wishlists);
+
+    return res.status(200).send({
+      response: {
+        "users": users,
+        "wishlists": wishlists
+      }
+    });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      response: "Something went wrong, please try again",
+    });
+  }
+});
+
 module.exports = router;
