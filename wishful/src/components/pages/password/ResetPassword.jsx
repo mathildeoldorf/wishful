@@ -32,7 +32,7 @@ const ResetPassword = (props) => {
       //HANDLE FETCH DATA
       // let response = await axios.post("http://localhost:9090/confirmReset/",
       let response = await axios.post(
-        "http://ec2-54-90-37-154.compute-1.amazonaws.com/",
+        "http://ec2-100-25-134-134.compute-1.amazonaws.com/confirmReset/",
         {
           password: password,
           repeatPassword: repeatPassword,

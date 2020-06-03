@@ -19,7 +19,7 @@ const CreateWishList = ({ setUpdate, fetchWishlists, showMessage }) => {
     try {
       // let response = await axios.post("http://localhost:9090/wishlists",
       let response = await axios.post(
-        "http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists",
+        "http://ec2-100-25-134-134.compute-1.amazonaws.com/wishlists",
         {
           name: name,
           description: description,

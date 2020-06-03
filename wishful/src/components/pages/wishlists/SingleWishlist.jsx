@@ -57,12 +57,12 @@ const SingleWishlist = (props) => {
       if (!context) {
         // response = await axios.get(`http://localhost:9090/wishlists/${ID}`);
         response = await axios.get(
-          `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}`
+          `http://ec2-100-25-134-134.compute-1.amazonaws.com/wishlists/${ID}`
         );
       } else {
         response = await axios.get(
           // `http://localhost:9090/profile/${userID}/wishlists/${ID}`
-          `http://ec2-54-90-37-154.compute-1.amazonaws.com/profile/${userID}/wishlists/${ID}`
+          `http://ec2-100-25-134-134.compute-1.amazonaws.com/profile/${userID}/wishlists/${ID}`
         );
       }
 
@@ -120,13 +120,13 @@ const SingleWishlist = (props) => {
       if (deleteType === "item") {
         response = await axios.get(
           // `http://localhost:9090/wishlists/${ID}/item/${wishlistItemID}/delete`
-          `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}/item/${wishlistItemID}/delete`
+          `http://ec2-100-25-134-134.compute-1.amazonaws.com/wishlists/${ID}/item/${wishlistItemID}/delete`
         );
         fetchWishlist();
       } else {
         response = await axios.get(
           // `http://localhost:9090/wishlists/${ID}/delete`
-          `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}/delete`
+          `http://ec2-100-25-134-134.compute-1.amazonaws.com/wishlists/${ID}/delete`
         );
         history.goBack();
       }

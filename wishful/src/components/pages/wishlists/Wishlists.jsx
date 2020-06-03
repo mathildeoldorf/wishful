@@ -30,12 +30,12 @@ const Wishlists = ({ userID, context }) => {
       if (context) {
         response = await axios.get(
           // `http://localhost:9090/profile/${userID}/wishlists/`
-          `http://ec2-54-90-37-154.compute-1.amazonaws.com/profile/${userID}/wishlists/`
+          `http://ec2-100-25-134-134.compute-1.amazonaws.com/profile/${userID}/wishlists/`
         );
       } else {
         // response = await axios.get("http://localhost:9090/wishlists");
         response = await axios.get(
-          "http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists"
+          "http://ec2-100-25-134-134.compute-1.amazonaws.com/wishlists"
         );
       }
 

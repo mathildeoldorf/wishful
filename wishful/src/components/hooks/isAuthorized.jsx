@@ -8,7 +8,7 @@ const isAuthorized = (ComponentToWrap) => (props) => {
     try {
       // const response = await axios.get("http://localhost:9090/user/authorize");
       const response = await axios.get(
-        "http://ec2-54-90-37-154.compute-1.amazonaws.com/user/authorize"
+        "http://ec2-100-25-134-134.compute-1.amazonaws.com/user/authorize"
       );
       setAuth(response.data);
 

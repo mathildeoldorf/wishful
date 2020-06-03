@@ -34,7 +34,7 @@ const RequestEmailResetPassword = (props) => {
       // HANDLE FETCH DATA
       // let response = await axios.post("http://localhost:9090/requestReset"
       let response = await axios.post(
-        "http://ec2-54-90-37-154.compute-1.amazonaws.com/requestReset",
+        "http://ec2-100-25-134-134.compute-1.amazonaws.com/requestReset",
         {
           email: email,
         }
