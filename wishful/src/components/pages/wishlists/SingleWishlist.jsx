@@ -119,14 +119,14 @@ const SingleWishlist = (props) => {
     try {
       if (deleteType === "item") {
         response = await axios.get(
-          `http://localhost:9090/wishlists/${ID}/item/${wishlistItemID}/delete`
-          // `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}/item/${wishlistItemID}/delete`
+          // `http://localhost:9090/wishlists/${ID}/item/${wishlistItemID}/delete`
+          `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}/item/${wishlistItemID}/delete`
         );
         fetchWishlist();
       } else {
         response = await axios.get(
-          `http://localhost:9090/wishlists/${ID}/delete`
-          // `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}/delete`
+          // `http://localhost:9090/wishlists/${ID}/delete`
+          `http://ec2-54-90-37-154.compute-1.amazonaws.com/wishlists/${ID}/delete`
         );
         history.goBack();
       }
