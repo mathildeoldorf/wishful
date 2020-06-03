@@ -353,6 +353,10 @@ ul {
   text-align: left;
 }
 
+.textCenter {
+  text-align: center;
+}
+
 /* ########################### ALIGNMENT */
 .alignItemsBottom {
   align-items: flex-end;
@@ -433,7 +437,8 @@ h2,
 h3,
 a,
 button,
-p {
+p,
+strong {
   font-family: 'Lato', sans-serif;
 }
 
@@ -453,11 +458,6 @@ h3 {
   text-transform: uppercase;
 }
 
-p {
-  font-size: calc(0.4rem + 50%);
-  font-size: 400;
-}
-
 .placeHolderMessage h2 {
   font-size: calc(2rem + 40%);
 }
@@ -472,7 +472,8 @@ label,
 input,
 nav,
 p,
-a.secondary {
+a.secondary,
+strong {
   font-size: calc(0.5rem + 30%);
 }
 
@@ -489,17 +490,10 @@ a.secondary {
   button,
   label,
   input,
-  nav {
+  nav,
+  strong {
     font-size: calc(0.3rem + 10%);
   }
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-right {
-  text-align: right;
 }
 
 /* ########################### PLACEHOLDER CONTENT STYLING */

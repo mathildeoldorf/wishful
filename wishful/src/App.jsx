@@ -179,7 +179,7 @@ const App = (props) => {
               path={`${process.env.PUBLIC_URL}/wishlists`}
               component={(props) => <Wishlists {...props} />}
             />
-            <Route
+            <AuthenticatedRoute
               exact
               path={`${process.env.PUBLIC_URL}/wishlists/wishlist/:wishlistID`}
               component={(props) => <SingleWishlist {...props} />}
@@ -187,7 +187,9 @@ const App = (props) => {
             <Route
               exact
               path={`${process.env.PUBLIC_URL}/profile/:ID/wishlist/:wishlistID`}
-              component={(props) => <SingleWishlist {...props} />}
+              component={(props) => (
+                <SingleWishlist searchID={searchID} {...props} />
+              )}
             />
             <AuthenticatedRoute
               exact
