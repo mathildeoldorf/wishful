@@ -4,7 +4,6 @@ const User = require("../models/User");
 const Wishlist = require("../models/Wishlist");
 
 const isAuthenticated = require("../isAuthenticated");
-
 const escape = require("escape-html");
 
 const alphaCharacterValidation = /[a-zA-Z -]/;
