@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
+const Wishlist = require("../models/Wishlist");
 
 const isAuthenticated = require("../isAuthenticated");
 
