@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   color: #494949;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 /* ########################### BASIC HTML ELEMENTS */
@@ -211,7 +211,6 @@ ul {
   list-style-type: none;
 }
 
-
 /* ########################### IMAGES */
 
 .img {
@@ -273,7 +272,6 @@ ul {
   flex-direction: column;
   justify-content: flex-end;
 }
-
 
 .flexStart {
   display: flex;
@@ -417,6 +415,17 @@ input {
   background-color: transparent;
 }
 
+input.error {
+  padding: 0.8vw;
+  border: solid 1px red;
+}
+
+.help,
+.profile p.help {
+  text-transform: inherit;
+  padding-top: 0.3vw;
+}
+
 label {
   text-transform: uppercase;
   font-weight: 800;
@@ -439,7 +448,7 @@ a,
 button,
 p,
 strong {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 h1 {
@@ -504,15 +513,15 @@ strong {
 
 .placeholderContainer {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   padding: 4vw 5vw;
   background-color: teal;
   color: #fff;
-
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width: 800px) {
   .sepContainer.placeholderBtns {
     padding: 10% 20%;
   }

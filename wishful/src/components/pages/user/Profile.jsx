@@ -33,9 +33,9 @@ const Profile = (props) => {
     closePromptMessage,
   } = usePromptHandler(null);
 
-  // if (!localStorage.getItem("user")) {
-  //   history.push("/");
-  // }
+  if (!localStorage.getItem("user")) {
+    history.push("/");
+  }
 
   const fetchUser = async () => {
     setLoading(true);
