@@ -18,7 +18,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "escape-html": "^1.0.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-rate-limit": "^5.1.1",
     "express-session": "^1.17.1",
     "faker": "^4.1.0",
